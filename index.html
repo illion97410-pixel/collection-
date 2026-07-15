@@ -6,150 +6,236 @@
 <title>Ma Collection</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Ma Collection">
-<meta name="theme-color" content="#080810">
+<meta name="theme-color" content="#0d0b14">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080810;--surface:#0f0f1a;--card:#141420;--card2:#1a1a2a;
-  --border:#252535;--text:#e8e8f5;--muted:#5a5a75;
-  --blu:#4a9eff;--k4:#b060ff;--dvd:#ffb030;--steel:#20d090;--red:#ff4060;
+  --bg:#0d0b14;--surface:#130f20;--card:#1a1628;--card2:#221d35;
+  --border:#2d2450;--border2:#1e1830;--text:#e8e0ff;--muted:#555080;
+  --purple:#8b5cf6;--purple2:#a78bfa;--purple3:#c084fc;--purpledk:#6d28d9;
+  --blu:#60a5fa;--k4:#c084fc;--dvd:#fbbf24;--steel:#34d399;--red:#f87171;
 }
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
 
 /* LOGIN */
 #login-screen{position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
-.login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px 24px;max-width:340px;width:100%;text-align:center}
-.login-box h2{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;margin-bottom:6px}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px 28px;max-width:340px;width:100%;text-align:center}
+.login-icon{width:64px;height:64px;border-radius:16px;background:rgba(139,92,246,.2);border:1px solid rgba(139,92,246,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
+.login-box h2{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;margin-bottom:6px;color:var(--text)}
 .login-box p{font-size:13px;color:var(--muted);margin-bottom:24px}
-.login-box input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:12px 16px;border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;outline:none;text-align:center;letter-spacing:3px;margin-bottom:12px}
-.login-btn{width:100%;background:var(--text);color:var(--bg);border:none;padding:12px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.login-box input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:12px 16px;border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;outline:none;text-align:center;letter-spacing:3px;margin-bottom:12px;transition:border-color .2s}
+.login-box input:focus{border-color:var(--purple)}
+.login-btn{width:100%;background:var(--purple);color:#fff;border:none;padding:13px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
 .login-error{color:var(--red);font-size:12px;margin-top:8px;display:none}
 
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border2);display:flex;z-index:200;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 8px;cursor:pointer;color:var(--muted);font-size:9px;font-weight:600;letter-spacing:.5px;border:none;background:none;font-family:'Inter',sans-serif;transition:color .15s}
+.nav-btn.active{color:var(--purple)}
+.nav-btn span{font-size:20px}
+
 /* HEADER */
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:0;z-index:200}
+header{background:var(--surface);border-bottom:1px solid var(--border2);padding:12px 16px;position:sticky;top:0;z-index:100}
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px}
-h1{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--text);white-space:nowrap}
+.header-left{display:flex;align-items:center;gap:8px}
+.header-bar{width:3px;height:22px;background:var(--purple);border-radius:2px;flex-shrink:0}
+h1{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--text);white-space:nowrap}
 .header-actions{display:flex;gap:6px}
-.view-btn{background:var(--card2);border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:7px;cursor:pointer;font-size:16px;transition:all .15s}
-.view-btn.active{border-color:var(--muted);color:var(--text)}
-.stats-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.stat{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.5px;white-space:nowrap}
-.s-total{background:var(--border);color:var(--muted)}
-.s-blu{background:rgba(74,158,255,.12);color:var(--blu)}
-.s-4k{background:rgba(176,96,255,.12);color:var(--k4)}
-.s-dvd{background:rgba(255,176,48,.12);color:var(--dvd)}
-.s-steel{background:rgba(32,208,144,.12);color:var(--steel)}
-.search-bar input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;outline:none}
-.search-bar input::placeholder{color:var(--muted)}
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.fbtn{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
-.fbtn.fa{background:var(--text);color:var(--bg);border-color:var(--text)}
-.fbtn.fb{background:rgba(74,158,255,.18);color:var(--blu);border-color:var(--blu)}
-.fbtn.f4{background:rgba(176,96,255,.18);color:var(--k4);border-color:var(--k4)}
-.fbtn.fd{background:rgba(255,176,48,.18);color:var(--dvd);border-color:var(--dvd)}
-.fbtn.fs{background:rgba(32,208,144,.18);color:var(--steel);border-color:var(--steel)}
+.view-btn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer;font-size:15px;transition:all .15s}
+.view-btn.active{border-color:var(--purple);color:var(--purple);background:rgba(139,92,246,.1)}
+.stats-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.stat{font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.4px;white-space:nowrap;border:1px solid transparent}
+.s-total{background:rgba(139,92,246,.15);color:var(--purple2);border-color:rgba(139,92,246,.25)}
+.s-blu{background:rgba(96,165,250,.1);color:var(--blu);border-color:rgba(96,165,250,.2)}
+.s-4k{background:rgba(192,132,252,.1);color:var(--k4);border-color:rgba(192,132,252,.2)}
+.s-dvd{background:rgba(251,191,36,.1);color:var(--dvd);border-color:rgba(251,191,36,.2)}
+.s-steel{background:rgba(52,211,153,.1);color:var(--steel);border-color:rgba(52,211,153,.2)}
+.search-wrap{position:relative}
+.search-wrap input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:9px 12px 9px 36px;border-radius:10px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--purple)}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-icon-inner{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
+.filters{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.fbtn{padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.fbtn.fa{background:var(--purple);color:#fff;border-color:var(--purple)}
+.fbtn.fb{background:rgba(96,165,250,.15);color:var(--blu);border-color:rgba(96,165,250,.35)}
+.fbtn.f4{background:rgba(192,132,252,.15);color:var(--k4);border-color:rgba(192,132,252,.35)}
+.fbtn.fd{background:rgba(251,191,36,.15);color:var(--dvd);border-color:rgba(251,191,36,.35)}
+.fbtn.fs{background:rgba(52,211,153,.15);color:var(--steel);border-color:rgba(52,211,153,.35)}
 
-/* ADD PANEL - LETTERBOXD STYLE */
-.add-panel{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px}
-.panel-title{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
+/* ADD PANEL */
+.add-panel{background:var(--surface);border-bottom:1px solid var(--border2);padding:12px 16px}
+.panel-title{font-size:9px;font-weight:700;color:var(--purple);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
 .search-add-wrap{position:relative}
-.search-add-input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .15s}
-.search-add-input:focus{border-color:var(--blu)}
+.search-add-input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 14px 10px 36px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.search-add-input:focus{border-color:var(--purple)}
 .search-add-input::placeholder{color:var(--muted)}
-.search-spinner{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;display:none}
-
-/* TMDB RESULTS DROPDOWN */
-.tmdb-results{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-top:6px;overflow:hidden;display:none;max-height:360px;overflow-y:auto}
-.tmdb-result{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;transition:background .1s;border-bottom:1px solid var(--border)}
+.search-add-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
+.search-spinner{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;display:none}
+.tmdb-results{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-top:6px;display:none;max-height:360px;overflow-y:auto}
+.tmdb-result{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;transition:background .1s;border-bottom:1px solid var(--border2)}
 .tmdb-result:last-child{border-bottom:none}
 .tmdb-result:hover,.tmdb-result:active{background:var(--card2)}
-.tmdb-thumb{width:36px;height:54px;object-fit:cover;border-radius:4px;background:var(--card2);flex-shrink:0}
+.tmdb-thumb{width:36px;height:54px;object-fit:cover;border-radius:5px;background:var(--card2);flex-shrink:0}
 .tmdb-info{flex:1;min-width:0}
 .tmdb-title{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tmdb-year{font-size:11px;color:var(--muted);margin-top:2px}
 .tmdb-owned{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
 .tmdb-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
-.tmdb-badge.owned{background:rgba(32,208,144,.2);color:var(--steel)}
-.tmdb-badge.notowned{background:var(--border);color:var(--muted)}
+.tmdb-badge.owned{background:rgba(139,92,246,.2);color:var(--purple2);border:1px solid rgba(139,92,246,.3)}
+.tmdb-badge.notowned{background:var(--border2);color:var(--muted)}
 .tmdb-no-results{padding:16px;text-align:center;color:var(--muted);font-size:13px}
 
-/* FORMAT SELECTION MODAL */
-.fmt-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:flex-end;justify-content:center;padding:0}
-.fmt-modal-bg.show{display:flex}
-.fmt-modal{background:var(--surface);border:1px solid var(--border);border-radius:16px 16px 0 0;padding:20px;width:100%;max-width:500px}
-.fmt-modal-header{display:flex;gap:12px;align-items:center;margin-bottom:16px}
-.fmt-modal-poster{width:50px;height:75px;object-fit:cover;border-radius:6px;background:var(--card2);flex-shrink:0}
-.fmt-modal-title{font-size:16px;font-weight:700;line-height:1.3}
-.fmt-modal-year{font-size:12px;color:var(--muted);margin-top:3px}
-.fmt-modal-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
-.fmt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.fmt-option{padding:12px;border-radius:10px;border:2px solid var(--border);cursor:pointer;transition:all .15s;text-align:center;background:var(--card)}
-.fmt-option.selected-blu{border-color:var(--blu);background:rgba(74,158,255,.12)}
-.fmt-option.selected-k4{border-color:var(--k4);background:rgba(176,96,255,.12)}
-.fmt-option.selected-dvd{border-color:var(--dvd);background:rgba(255,176,48,.12)}
-.fmt-option.selected-steel{border-color:var(--steel);background:rgba(32,208,144,.12)}
-.fmt-option.owned-blu{border-color:var(--blu);background:rgba(74,158,255,.2)}
-.fmt-option.owned-k4{border-color:var(--k4);background:rgba(176,96,255,.2)}
-.fmt-option.owned-dvd{border-color:var(--dvd);background:rgba(255,176,48,.2)}
-.fmt-option.owned-steel{border-color:var(--steel);background:rgba(32,208,144,.2)}
-.fmt-option-name{font-size:12px;font-weight:700;margin-bottom:3px}
-.fmt-option-check{font-size:16px}
-.fmt-blu .fmt-option-name{color:var(--blu)}
-.fmt-k4 .fmt-option-name{color:var(--k4)}
-.fmt-dvd .fmt-option-name{color:var(--dvd)}
-.fmt-steel .fmt-option-name{color:var(--steel)}
-.fmt-modal-btns{display:flex;gap:8px}
-.fmt-btn-save{flex:1;background:var(--text);color:var(--bg);border:none;padding:12px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
-.fmt-btn-cancel{background:var(--card2);color:var(--muted);border:none;padding:12px 16px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
+/* PAGES */
+.page{display:none;padding-bottom:80px}
+.page.active{display:block}
 
-/* CONTENT */
-.content-wrap{padding:0 12px 80px}
+/* GRID */
+.content-wrap{padding:0 12px}
 .result-count{font-size:11px;color:var(--muted);padding:10px 4px 6px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;padding:4px}
-.grid-card{background:var(--card);border-radius:10px;overflow:hidden;transition:transform .15s,box-shadow .15s;position:relative;border:1px solid var(--border)}
-.grid-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
-.poster-wrap{position:relative;width:100%;aspect-ratio:2/3;background:var(--card2);overflow:hidden}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;padding:4px}
+.grid-card{background:var(--card);border-radius:10px;overflow:hidden;transition:transform .15s;position:relative;border:1px solid var(--border2)}
+.poster-wrap{position:relative;width:100%;aspect-ratio:2/3;background:var(--card2);overflow:hidden;cursor:pointer}
 .grid-poster{width:100%;height:100%;object-fit:cover;display:none}
 .grid-poster.loaded{display:block}
-.poster-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;position:absolute;top:0;left:0}
-.grid-info{padding:8px}
-.grid-title{font-size:11px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.poster-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;position:absolute;top:0;left:0}
+.grid-info{padding:7px 8px}
+.grid-title{font-size:10px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .grid-badges{display:flex;gap:3px;flex-wrap:wrap}
-.badge{font-size:8px;font-weight:700;padding:2px 5px;border-radius:4px}
-.b-blu{background:rgba(74,158,255,.2);color:var(--blu)}
-.b-4k{background:rgba(176,96,255,.2);color:var(--k4)}
-.b-dvd{background:rgba(255,176,48,.2);color:var(--dvd)}
-.b-steel{background:rgba(32,208,144,.2);color:var(--steel)}
-.grid-del{position:absolute;top:5px;right:5px;background:rgba(8,8,16,.8);border:none;color:var(--muted);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:12px;display:none;align-items:center;justify-content:center}
-.grid-card:hover .grid-del{display:flex}
-.grid-del:hover{background:var(--red);color:#fff}
-.steel-crown{position:absolute;top:5px;left:5px;font-size:14px;text-shadow:0 1px 4px rgba(0,0,0,.8)}
-.list-wrap{overflow-x:auto}
+.badge{font-size:7px;font-weight:700;padding:2px 5px;border-radius:4px}
+.b-blu{background:rgba(96,165,250,.18);color:var(--blu)}
+.b-4k{background:rgba(192,132,252,.18);color:var(--k4)}
+.b-dvd{background:rgba(251,191,36,.18);color:var(--dvd)}
+.b-steel{background:rgba(52,211,153,.18);color:var(--steel)}
+.steel-crown{position:absolute;top:5px;left:5px;font-size:13px;pointer-events:none}
+/* 3 DOTS MENU */
+.card-menu-btn{position:absolute;top:5px;right:5px;background:rgba(13,11,20,.85);border:1px solid var(--border);border-radius:6px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--purple2);font-size:16px;font-weight:700;z-index:2}
+
+/* LIST */
+.list-wrap{overflow-x:auto;padding:0 12px}
 .list-table{width:100%;border-collapse:collapse;min-width:420px}
-.list-table thead th{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 10px 8px;border-bottom:1px solid var(--border);text-align:left;background:var(--bg)}
+.list-table thead th{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 10px 8px;border-bottom:1px solid var(--border2);text-align:left;background:var(--bg)}
 .list-table thead th:not(:first-child){text-align:center}
-.list-table tbody tr{border-bottom:1px solid rgba(37,37,53,.5);transition:background .1s}
+.list-table tbody tr{border-bottom:1px solid rgba(45,36,80,.4);transition:background .1s}
 .list-table tbody tr:hover{background:var(--surface)}
 .list-table td{padding:8px 10px;font-size:12px;vertical-align:middle}
 .list-table td:not(:first-child){text-align:center}
-.list-thumb{width:28px;height:42px;object-fit:cover;border-radius:3px;background:var(--card2);margin-right:8px;vertical-align:middle}
+.list-thumb{width:28px;height:42px;object-fit:cover;border-radius:4px;background:var(--card2);margin-right:8px;vertical-align:middle;cursor:pointer}
 .list-title-cell{display:flex;align-items:center}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
 .d-blu{background:var(--blu)}.d-4k{background:var(--k4)}.d-dvd{background:var(--dvd)}.d-steel{background:var(--steel)}
 .d-empty{background:transparent;border:1px solid var(--border)}
-.del-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:2px 5px;border-radius:4px;opacity:0}
+.del-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:2px 5px;border-radius:4px;opacity:0;transition:all .15s}
 tr:hover .del-btn{opacity:1}
 .del-btn:hover{color:var(--red)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--steel);color:#000;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;z-index:999;display:none;white-space:nowrap}
-@media(max-width:500px){.grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}}
+
+/* CARD CONTEXT MENU */
+.ctx-menu{position:fixed;background:var(--card);border:1px solid var(--border);border-radius:12px;z-index:400;min-width:200px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.ctx-header{padding:10px 12px;border-bottom:1px solid var(--border2);background:var(--surface)}
+.ctx-header-title{font-size:12px;font-weight:700;color:var(--text)}
+.ctx-header-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.ctx-fmts{display:flex;gap:5px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--border2)}
+.ctx-fmt{font-size:9px;font-weight:700;padding:4px 9px;border-radius:6px;cursor:pointer;border:1px solid var(--border);color:var(--muted);background:var(--card2);transition:all .15s}
+.ctx-fmt.active-blu{background:rgba(96,165,250,.2);color:var(--blu);border-color:rgba(96,165,250,.4)}
+.ctx-fmt.active-4k{background:rgba(192,132,252,.2);color:var(--k4);border-color:rgba(192,132,252,.4)}
+.ctx-fmt.active-dvd{background:rgba(251,191,36,.2);color:var(--dvd);border-color:rgba(251,191,36,.4)}
+.ctx-fmt.active-steel{background:rgba(52,211,153,.2);color:var(--steel);border-color:rgba(52,211,153,.4)}
+.ctx-save{width:calc(100% - 24px);margin:8px 12px;background:var(--purple);color:#fff;border:none;padding:8px;border-radius:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
+.ctx-delete{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;color:var(--red);font-size:12px;border-top:1px solid var(--border2)}
+.ctx-delete:hover{background:rgba(248,113,113,.08)}
+.ctx-overlay{position:fixed;inset:0;z-index:399}
+
+/* FILM DETAIL MODAL */
+.film-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;overflow-y:auto}
+.film-modal-bg.show{display:block}
+.film-modal{background:var(--bg);min-height:100%;max-width:500px;margin:0 auto}
+.film-modal-hero{position:relative;background:var(--surface);padding:16px;display:flex;gap:14px;align-items:flex-start}
+.film-modal-poster{width:90px;height:135px;object-fit:cover;border-radius:10px;background:var(--card2);flex-shrink:0;border:1px solid var(--border)}
+.film-modal-back{position:absolute;top:12px;right:12px;background:rgba(13,11,20,.8);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:16px}
+.film-modal-title{font-size:18px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:5px}
+.film-modal-director{font-size:12px;color:var(--purple2);margin-bottom:5px}
+.film-modal-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.film-modal-rating{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--dvd);font-weight:700;margin-bottom:10px}
+.film-modal-fmts{display:flex;gap:6px;flex-wrap:wrap}
+.film-modal-fmt{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px}
+.fmt-blu-owned{background:rgba(96,165,250,.2);color:var(--blu);border:1px solid rgba(96,165,250,.3)}
+.fmt-k4-owned{background:rgba(192,132,252,.2);color:var(--k4);border:1px solid rgba(192,132,252,.3)}
+.fmt-dvd-owned{background:rgba(251,191,36,.2);color:var(--dvd);border:1px solid rgba(251,191,36,.3)}
+.fmt-steel-owned{background:rgba(52,211,153,.2);color:var(--steel);border:1px solid rgba(52,211,153,.3)}
+.film-modal-body{padding:16px}
+.film-section-title{font-size:9px;font-weight:700;color:var(--purple);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.film-genres{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.film-genre{font-size:11px;padding:4px 10px;border-radius:6px;background:var(--card);color:var(--purple2);border:1px solid var(--border)}
+.film-synopsis{font-size:13px;color:#9090b0;line-height:1.7;margin-bottom:16px}
+.film-crew{background:var(--card);border-radius:10px;padding:12px;margin-bottom:12px}
+.film-person{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.film-person:last-child{margin-bottom:0}
+.film-person-avatar{width:34px;height:34px;border-radius:50%;background:var(--card2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;overflow:hidden}
+.film-person-avatar img{width:100%;height:100%;object-fit:cover}
+.film-person-name{font-size:12px;font-weight:600;color:var(--text)}
+.film-person-role{font-size:10px;color:var(--muted)}
+
+/* FORMAT MODAL */
+.fmt-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:600;align-items:flex-end;justify-content:center}
+.fmt-modal-bg.show{display:flex}
+.fmt-modal{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--purple);border-radius:20px 20px 0 0;padding:20px 16px;width:100%;max-width:500px}
+.fmt-modal-header{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.fmt-modal-poster{width:52px;height:78px;object-fit:cover;border-radius:8px;background:var(--card2);flex-shrink:0;border:1px solid var(--border)}
+.fmt-modal-title{font-size:16px;font-weight:700;color:var(--text)}
+.fmt-modal-year{font-size:12px;color:var(--muted);margin-top:3px}
+.fmt-modal-label{font-size:9px;font-weight:700;color:var(--purple);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.fmt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.fmt-option{padding:14px 12px;border-radius:12px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;text-align:center;background:var(--card)}
+.fmt-option-check{font-size:18px;margin-bottom:4px}
+.fmt-option-name{font-size:11px;font-weight:700;letter-spacing:.5px}
+.fmt-blu .fmt-option-name{color:var(--blu)}
+.fmt-k4 .fmt-option-name{color:var(--k4)}
+.fmt-dvd .fmt-option-name{color:var(--dvd)}
+.fmt-steel .fmt-option-name{color:var(--steel)}
+.fmt-option.sel-blu{border-color:var(--blu);background:rgba(96,165,250,.12)}
+.fmt-option.sel-k4{border-color:var(--k4);background:rgba(192,132,252,.12)}
+.fmt-option.sel-dvd{border-color:var(--dvd);background:rgba(251,191,36,.12)}
+.fmt-option.sel-steel{border-color:var(--steel);background:rgba(52,211,153,.12)}
+.fmt-modal-btns{display:flex;gap:8px}
+.fmt-btn-save{flex:1;background:var(--purple);color:#fff;border:none;padding:13px;border-radius:11px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.fmt-btn-cancel{background:var(--card);color:var(--muted);border:1px solid var(--border);padding:13px 18px;border-radius:11px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
+
+/* STATS PAGE */
+.stats-page{padding:16px 16px 80px}
+.stats-section{margin-bottom:24px}
+.stats-section-title{font-size:9px;font-weight:700;color:var(--purple);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.stats-card{background:var(--card);border:1px solid var(--border2);border-radius:12px;padding:14px;margin-bottom:8px}
+.stats-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.stats-bar-label{font-size:12px;color:var(--text);min-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stats-bar-track{flex:1;background:var(--card2);border-radius:4px;height:6px;overflow:hidden}
+.stats-bar-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .5s}
+.stats-bar-count{font-size:11px;font-weight:700;color:var(--purple2);min-width:28px;text-align:right}
+.stats-fmt-bar{display:flex;gap:3px;height:10px;border-radius:5px;overflow:hidden;margin-bottom:8px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.stats-num-card{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:12px;text-align:center}
+.stats-num{font-size:22px;font-weight:700;color:var(--purple2)}
+.stats-num-label{font-size:9px;color:var(--muted);letter-spacing:.5px;margin-top:3px}
+.stats-decade-chart{display:flex;gap:5px;align-items:flex-end;height:60px;margin-top:8px}
+.stats-decade-bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.stats-decade-fill{width:100%;background:var(--purple);border-radius:3px 3px 0 0;min-height:4px;transition:height .5s;opacity:.7}
+.stats-decade-fill.max{opacity:1}
+.stats-decade-label{font-size:8px;color:var(--muted)}
+.stats-loading{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+.stats-progress{background:var(--card);border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:var(--muted);text-align:center}
+.stats-progress-bar{background:var(--card2);border-radius:4px;height:4px;margin-top:8px;overflow:hidden}
+.stats-progress-fill{height:100%;background:var(--purple);border-radius:4px;transition:width .3s}
+.country-flag{font-size:14px;margin-right:5px}
+
+/* TOAST */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:700;z-index:999;display:none;white-space:nowrap;box-shadow:0 4px 20px rgba(139,92,246,.4)}
 </style>
 </head>
 <body>
 
 <div id="login-screen">
   <div class="login-box">
-    <div style="font-size:48px;margin-bottom:12px">🎬</div>
+    <div class="login-icon">🎬</div>
     <h2>MA COLLECTION</h2>
     <p>Entre le mot de passe pour accéder</p>
     <input type="password" id="pwd-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPwd()">
@@ -158,43 +244,87 @@ tr:hover .del-btn{opacity:1}
   </div>
 </div>
 
-<header>
-  <div class="header-top">
-    <h1>🎬 MA COLLECTION</h1>
-    <div class="header-actions">
-      <button class="view-btn active" id="btn-grid" onclick="setView('grid')">⊞</button>
-      <button class="view-btn" id="btn-list" onclick="setView('list')">☰</button>
+<!-- COLLECTION PAGE -->
+<div id="page-collection" class="page active">
+  <header>
+    <div class="header-top">
+      <div class="header-left">
+        <div class="header-bar"></div>
+        <h1>MA COLLECTION</h1>
+      </div>
+      <div class="header-actions">
+        <button class="view-btn active" id="btn-grid" onclick="setView('grid')">⊞</button>
+        <button class="view-btn" id="btn-list" onclick="setView('list')">☰</button>
+      </div>
+    </div>
+    <div class="stats-row">
+      <span class="stat s-total" id="st-total">— films</span>
+      <span class="stat s-blu" id="st-blu">● BLU-RAY</span>
+      <span class="stat s-4k" id="st-4k">● 4K</span>
+      <span class="stat s-dvd" id="st-dvd">● DVD</span>
+      <span class="stat s-steel" id="st-steel">● STEELBOOK</span>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon-inner">🔍</span>
+      <input type="text" id="search" placeholder="Titre, acteur, réalisateur..." oninput="handleSearch()">
+    </div>
+    <div class="filters">
+      <button class="fbtn fa" id="f-all" onclick="setFilter('all',this)">Tous</button>
+      <button class="fbtn" id="f-blu" onclick="setFilter('bluray',this)">Blu-ray</button>
+      <button class="fbtn" id="f-4k" onclick="setFilter('bluray4k',this)">4K</button>
+      <button class="fbtn" id="f-dvd" onclick="setFilter('dvd',this)">DVD</button>
+      <button class="fbtn" id="f-steel" onclick="setFilter('steelbook',this)">Steelbook</button>
+    </div>
+  </header>
+  <div class="content-wrap">
+    <div class="result-count" id="result-count"></div>
+    <div id="grid-view" class="grid"></div>
+    <div id="list-view" class="list-wrap" style="display:none;padding:0">
+      <table class="list-table">
+        <thead><tr><th>FILM</th><th>BLU</th><th>4K</th><th>DVD</th><th>SB</th><th></th></tr></thead>
+        <tbody id="list-body"></tbody>
+      </table>
     </div>
   </div>
-  <div class="stats-row">
-    <span class="stat s-total" id="st-total">— films</span>
-    <span class="stat s-blu" id="st-blu">● BLU-RAY</span>
-    <span class="stat s-4k" id="st-4k">● 4K</span>
-    <span class="stat s-dvd" id="st-dvd">● DVD</span>
-    <span class="stat s-steel" id="st-steel">● STEELBOOK</span>
-  </div>
-  <div class="search-bar">
-    <input type="text" id="search" placeholder="🔍 Rechercher dans ma collection..." oninput="render()">
-  </div>
-  <div class="filters">
-    <button class="fbtn fa" id="f-all" onclick="setFilter('all',this)">Tous</button>
-    <button class="fbtn" id="f-blu" onclick="setFilter('bluray',this)">Blu-ray</button>
-    <button class="fbtn" id="f-4k" onclick="setFilter('bluray4k',this)">4K</button>
-    <button class="fbtn" id="f-dvd" onclick="setFilter('dvd',this)">DVD</button>
-    <button class="fbtn" id="f-steel" onclick="setFilter('steelbook',this)">Steelbook</button>
-  </div>
-</header>
-
-<div class="add-panel">
-  <div class="panel-title">➕ Ajouter un film</div>
-  <div class="search-add-wrap">
-    <input type="text" class="search-add-input" id="add-search" placeholder="Rechercher un film à ajouter..." oninput="searchTMDB(this.value)" autocomplete="off">
-    <span class="search-spinner" id="search-spinner">⏳</span>
-  </div>
-  <div class="tmdb-results" id="tmdb-results"></div>
 </div>
 
-<!-- FORMAT SELECTION MODAL -->
+<!-- ADD PAGE -->
+<div id="page-add" class="page">
+  <header>
+    <div class="header-top">
+      <div class="header-left">
+        <div class="header-bar"></div>
+        <h1>AJOUTER</h1>
+      </div>
+    </div>
+  </header>
+  <div class="add-panel" style="border-bottom:none">
+    <div class="panel-title">🎬 Rechercher un film</div>
+    <div class="search-add-wrap">
+      <span class="search-add-icon">🔍</span>
+      <input type="text" class="search-add-input" id="add-search" placeholder="Titre du film..." oninput="searchTMDB(this.value)" autocomplete="off">
+      <span class="search-spinner" id="search-spinner">⏳</span>
+    </div>
+    <div class="tmdb-results" id="tmdb-results"></div>
+  </div>
+</div>
+
+<!-- STATS PAGE -->
+<div id="page-stats" class="page">
+  <header>
+    <div class="header-top">
+      <div class="header-left">
+        <div class="header-bar"></div>
+        <h1>STATISTIQUES</h1>
+      </div>
+    </div>
+  </header>
+  <div class="stats-page" id="stats-content">
+    <div class="stats-loading">Appuie sur l'onglet stats pour charger 📊</div>
+  </div>
+</div>
+
+<!-- FORMAT MODAL (add) -->
 <div class="fmt-modal-bg" id="fmt-modal">
   <div class="fmt-modal">
     <div class="fmt-modal-header">
@@ -220,44 +350,71 @@ tr:hover .del-btn{opacity:1}
       </div>
       <div class="fmt-option fmt-steel" id="fmt-steel" onclick="toggleFmt('steelbook')">
         <div class="fmt-option-check" id="chk-steel">○</div>
-        <div class="fmt-option-name">STEELBOOK</div>
+        <div class="fmt-option-name">STEELBOOK 👑</div>
       </div>
     </div>
     <div class="fmt-modal-btns">
       <button class="fmt-btn-cancel" onclick="closeFmtModal()">Annuler</button>
-      <button class="fmt-btn-save" onclick="saveFilm()">Ajouter à ma collection</button>
+      <button class="fmt-btn-save" id="fmt-save-btn" onclick="saveFilm()">Ajouter</button>
     </div>
   </div>
 </div>
 
-<div class="content-wrap">
-  <div class="result-count" id="result-count"></div>
-  <div id="grid-view" class="grid"></div>
-  <div id="list-view" class="list-wrap" style="display:none">
-    <table class="list-table">
-      <thead><tr>
-        <th>FILM</th><th>BLU-RAY</th><th>4K</th><th>DVD</th><th>STEELBOOK</th><th></th>
-      </tr></thead>
-      <tbody id="list-body"></tbody>
-    </table>
+<!-- FILM DETAIL MODAL -->
+<div class="film-modal-bg" id="film-modal">
+  <div class="film-modal">
+    <div class="film-modal-hero" id="film-modal-hero">
+      <button class="film-modal-back" onclick="closeFilmModal()">✕</button>
+    </div>
+    <div class="film-modal-body" id="film-modal-body"></div>
   </div>
 </div>
+
+<!-- CONTEXT MENU -->
+<div class="ctx-overlay" id="ctx-overlay" onclick="closeCtxMenu()" style="display:none"></div>
+<div class="ctx-menu" id="ctx-menu" style="display:none">
+  <div class="ctx-header">
+    <div class="ctx-header-title" id="ctx-title"></div>
+    <div class="ctx-header-sub" id="ctx-sub"></div>
+  </div>
+  <div class="ctx-fmts" id="ctx-fmts"></div>
+  <button class="ctx-save" onclick="saveCtxFormats()">💾 Sauvegarder les formats</button>
+  <div class="ctx-delete" onclick="deleteFromCtx()">🗑️ Supprimer de la collection</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" id="nav-collection" onclick="showPage('collection')">
+    <span>🎬</span>
+    COLLECTION
+  </button>
+  <button class="nav-btn" id="nav-add" onclick="showPage('add')">
+    <span>➕</span>
+    AJOUTER
+  </button>
+  <button class="nav-btn" id="nav-stats" onclick="showPage('stats')">
+    <span>📊</span>
+    STATS
+  </button>
+</nav>
 
 <div class="toast" id="toast"></div>
 
 <script>
 const TMDB_KEY = '8265bd1679663a7ea12ac168da84d2e8';
-const STORAGE_KEY = 'collection_v6';
+const STORAGE_KEY = 'collection_v7';
 const POSTER_KEY = 'posters_v2';
+const META_KEY = 'film_meta_v1';
 const APP_PASSWORD = 'cinema2024';
-
 const DEFAULT_FILMS = [{"title":"À bout de souffle","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":1},{"title":"Anatomie d'une chute","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":2},{"title":"Annette","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":3},{"title":"American gangster","bluray":false,"bluray4k":true,"dvd":false,"steelbook":true,"id":4},{"title":"Aftersun","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":5},{"title":"A monster calls","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":6},{"title":"Alien","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":7},{"title":"Aliens","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":8},{"title":"Abyss","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":9},{"title":"Avatar 2","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":10},{"title":"Arizona dream","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":11},{"title":"Angel heart","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":12},{"title":"A.I intelligence artificielle","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":13},{"title":"AD astra","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":14},{"title":"Apocalypto","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":15},{"title":"As tears go by","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":16},{"title":"Fenêtre sur cour","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":17},{"title":"Sueur froides","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":18},{"title":"Psychose","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":19},{"title":"Les oiseaux","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":20},{"title":"Ben-hur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":21},{"title":"Beau-père","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":22},{"title":"Borsalino","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":23},{"title":"Bac nord","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":24},{"title":"Bonnie and Clyde","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":25},{"title":"Blow out","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":26},{"title":"Basic instinct","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":27},{"title":"Brazil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":28},{"title":"Boogie nights","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":29},{"title":"Big fish","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":30},{"title":"Baby driver","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":31},{"title":"Beau is afraid","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":32},{"title":"Sherlock junior","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":33},{"title":"La croisière du navigateur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":34},{"title":"Les fiancées en folie","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":35},{"title":"le dernier round","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":36},{"title":"Citizen kane","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":37},{"title":"Casablanca","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":38},{"title":"Chantons sous la pluie","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":39},{"title":"Orange mécanique","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":40},{"title":"Coup de cœur","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":41},{"title":"Christine","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":42},{"title":"Candyman","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":43},{"title":"Cop land","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":44},{"title":"Casino","bluray":false,"bluray4k":true,"dvd":true,"steelbook":false,"id":45},{"title":"Collateral","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":46},{"title":"Cría cuervos","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":47},{"title":"Contes du hasard","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":48},{"title":"Cinema paradiso","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":49},{"title":"Coup de tête","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":50},{"title":"Céline et Julie vont en bateau","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":51},{"title":"Cent mille dollars au soleil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":52},{"title":"City of darkness","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":53},{"title":"Double team","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":54},{"title":"Django (1966)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":55},{"title":"Django unchained","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":56},{"title":"Double jeu","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":57},{"title":"Sur la route de madison","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":58},{"title":"Décision to leave","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":59},{"title":"Dark city","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":60},{"title":"Ed wood","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":61},{"title":"Easy rider","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":62},{"title":"Ema","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":63},{"title":"Eo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":64},{"title":"Ennio","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":65},{"title":"Evil dead 2","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":66},{"title":"Enter the dragon","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":67},{"title":"Full metal jacket","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":68},{"title":"Fury","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":69},{"title":"Rambo first blood","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":70},{"title":"F for fake","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":71},{"title":"Fog","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":72},{"title":"Flashdance","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":73},{"title":"Forrest gump","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":74},{"title":"Fumer fait tousser","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":75},{"title":"Ghost dog","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":76},{"title":"Gatsby le magnifique (2013)","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":77},{"title":"Get out","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":78},{"title":"Gravity","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":79},{"title":"Gran torino","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":80},{"title":"2001 l'odyssée de l'espace","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":81},{"title":"Massacre à la transoneuse","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":82},{"title":"La vie est belle (1946)","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":83},{"title":"Marquis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":84},{"title":"La clé","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":85},{"title":"Terminator 2","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":86},{"title":"Le parrain","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":87},{"title":"Le parrain 2","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":88},{"title":"Le parrain 3","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":89},{"title":"Le segnieur des anneaux","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":90},{"title":"le segnieur des anneaux 2","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":91},{"title":"Le segnieur des anneaux 3","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":92},{"title":"Le hobbit","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":93},{"title":"Le hobbit 2","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":94},{"title":"Le hobbit 3","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":95},{"title":"Grace is gone","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":96},{"title":"Happy together","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":97},{"title":"Halloween (1978)","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":98},{"title":"Haut bas fragile","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":99},{"title":"Hérédité","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":100},{"title":"Indiana jones","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":101},{"title":"Indiana jones 2","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":102},{"title":"Indiana jones 3","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":103},{"title":"Indiana jones 4","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":104},{"title":"Il était une fois dans l'ouest","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":105},{"title":"Impitoyable","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":106},{"title":"Idlewild","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":107},{"title":"Iron claw","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":108},{"title":"Itinéraire d'un enfant gâté","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":109},{"title":"In the mood for love","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":110},{"title":"Joker","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":111},{"title":"Jurassic park","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":112},{"title":"Jurassic park 2","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":113},{"title":"Jurassic park 3","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":114},{"title":"King kong (1933)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":115},{"title":"Keoma","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":116},{"title":"Le kid","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":117},{"title":"Les 7 samouraïs","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":118},{"title":"Le mépris","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":119},{"title":"Le dîner de cons","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":120},{"title":"Le grand bain","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":121},{"title":"Les cinques diables","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":122},{"title":"La nuit du 12","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":123},{"title":"Les rascals","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":124},{"title":"La passion de dodin bouffant","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":125},{"title":"La belle noiseuse","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":126},{"title":"L'enfer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":127},{"title":"Le salaire de la peur","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":128},{"title":"L'homme de rio","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":129},{"title":"L'as des as","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":130},{"title":"Le marginal","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":131},{"title":"Le cerveau","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":132},{"title":"Le guépard","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":133},{"title":"La piscine","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":134},{"title":"Le cercle rouge","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":135},{"title":"Les incorruptibles","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":136},{"title":"L'impasse","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":137},{"title":"Les affranchis","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":138},{"title":"Le loup de wall street","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":139},{"title":"Le voyeur","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":140},{"title":"Lawrence d'Arabie","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":141},{"title":"Les anges déchus","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":142},{"title":"La dolce vita","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":143},{"title":"Le traître","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":144},{"title":"La mule","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":145},{"title":"Pour une poignée de dollars","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":146},{"title":"Et pour quelques dollars de plus","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":147},{"title":"Le bon la brute et le truand","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":148},{"title":"La porte du paradis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":149},{"title":"Le dernier des mohicans","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":150},{"title":"Le nouveau monde","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":151},{"title":"La ligne rouge","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":152},{"title":"Le samouraï","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":153},{"title":"Les segnieur de dogtown","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":154},{"title":"Lost in transaltion","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":155},{"title":"Licorice pizza","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":156},{"title":"L'exorciste","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":157},{"title":"La lois de Téhéran","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":158},{"title":"Les règles du jeu","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":159},{"title":"La zone d'intérêt","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":160},{"title":"L'homme qui en savait trop","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":161},{"title":"Les dents de la mer","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":162},{"title":"Les yeux sans visage","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":163},{"title":"Les parapluies de cherbourg","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":164},{"title":"Mesrine","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":165},{"title":"Mesrine 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":166},{"title":"L'innocent","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":167},{"title":"Les filles d'olfa","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":168},{"title":"La vraie famille","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":169},{"title":"La frime","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":170},{"title":"Mission impossible","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":171},{"title":"Mission impossible 2","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":172},{"title":"Mission impossible 3","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":173},{"title":"Mission impossible 4","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":174},{"title":"Mission impossible 5","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":175},{"title":"Mission impossible 6","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":176},{"title":"Mr. Klein","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":177},{"title":"Mission","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":178},{"title":"Magnolia","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":179},{"title":"Mulholland drive","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":180},{"title":"Michael cimino un mirage américain","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":181},{"title":"La nuit des morts vivants","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":182},{"title":"Nos années sauvages","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":183},{"title":"Oss 117","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":184},{"title":"Oss 117 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":185},{"title":"Oss 117 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":186},{"title":"il était une fois en amérique","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":187},{"title":"Peur sur la ville","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":188},{"title":"Pleasure","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":189},{"title":"Papillon","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":190},{"title":"Platoon","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":191},{"title":"Pulp fiction","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":192},{"title":"Palm springs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":193},{"title":"Pirates des caraibes","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":194},{"title":"Pirates des caraibes 2","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":195},{"title":"Public enemies","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":196},{"title":"Peggy sue s'est mariée","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":197},{"title":"Paddington","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":198},{"title":"Paddington 2","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":199},{"title":"Predator","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":200},{"title":"Prey","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":201},{"title":"Priscilla","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":202},{"title":"Rashômon","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":203},{"title":"Ran","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":204},{"title":"Red sun","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":205},{"title":"Requiem pour un massacre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":206},{"title":"Rosemary's baby","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":207},{"title":"Rien à foutre","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":208},{"title":"Revoir paris","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":209},{"title":"Réussir ou mourir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":210},{"title":"Richard jewell","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":211},{"title":"Roma","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":212},{"title":"Salò ou les 120 journées de sodome","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":213},{"title":"Soy cuba","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":214},{"title":"Soleil vert","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":215},{"title":"Scarface (1983)","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":216},{"title":"Soldier blue","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":217},{"title":"Sleepy hallow","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":218},{"title":"Shaun of the dead","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":219},{"title":"Snatch","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":220},{"title":"Small soldier","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":221},{"title":"Showing Up","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":222},{"title":"Shinning","bluray":true,"bluray4k":true,"dvd":true,"steelbook":false,"id":223},{"title":"Time and tide","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":224},{"title":"The maltesse falcon","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":225},{"title":"The howling","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":226},{"title":"The wicker man","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":227},{"title":"Taxi driver","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":228},{"title":"The house that jack built","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":229},{"title":"The thing","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":230},{"title":"The crow","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":231},{"title":"Thelma et louise","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":232},{"title":"The burbs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":233},{"title":"Tu ne tueras point","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":234},{"title":"Titanic","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":235},{"title":"Top gun","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":236},{"title":"Top gun: Maverick","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":237},{"title":"Two lovers","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":238},{"title":"The lost city of z","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":239},{"title":"The tree of life","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":240},{"title":"The batman","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":241},{"title":"Batman begins","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":242},{"title":"Batman the dark knight","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":243},{"title":"Batman the dark knight rises","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":244},{"title":"The host","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":245},{"title":"Un singe en hiver","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":246},{"title":"Une vraie jeune fille","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":247},{"title":"Une vie cachée","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":248},{"title":"Utøya 22 juillet","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":249},{"title":"Vol au dessus d'un nid de coucou","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":250},{"title":"Voyage au bout de l'enfer","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":251},{"title":"Vidéodrome","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":252},{"title":"West Side Story (2021)","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":253},{"title":"War dogs","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":254},{"title":"Gilbert grape","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":255},{"title":"Yannick","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":256},{"title":"8 ½","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":257},{"title":"8 mille","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":258},{"title":"Paris texas","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":259},{"title":"Les ailes du désir","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":260},{"title":"Metropolis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":261},{"title":"Blade runner","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":262},{"title":"Ichi the killer","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":263},{"title":"Eraserhead","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":264},{"title":"luke la main froide","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":265},{"title":"Sailor & Lula","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":266},{"title":"Classe tous risque","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":267},{"title":"36 Quai des Orfèvres","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":268},{"title":"Terminator","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":269},{"title":"The Substance","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":270},{"title":"Amadeus","bluray":false,"bluray4k":true,"dvd":false,"steelbook":true,"id":271},{"title":"Malcolm X","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":272},{"title":"Hellboy","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":273},{"title":"Hellboy 2","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":274},{"title":"Blade","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":275},{"title":"Blade 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":276},{"title":"les 3 Royaumes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":277},{"title":"La grande illusion","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":278},{"title":"Sympathy for Mr. vengeance","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":279},{"title":"Old boy","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":280},{"title":"Lady Vengeance","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":281},{"title":"Les mauvaises fréquentations","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":282},{"title":"La Rosière de pessac","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":283},{"title":"Numéro Zéro","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":284},{"title":"La maman et la putain","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":285},{"title":"Mes petites amoureuses","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":286},{"title":"Une sale histoire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":287},{"title":"Quand passent les cigognes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":288},{"title":"Marketa Lazarova","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":289},{"title":"Midnight Express","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":290},{"title":"Merry christmas Mr lawrence (furyo)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":291},{"title":"Série Noire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":292},{"title":"The Bridge of the river Kwai","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":293},{"title":"Compañeros","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":294},{"title":"Une Histoire vraie","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":295},{"title":"Un justicier dans la ville","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":296},{"title":"A Scene At the Sea","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":297},{"title":"Adieu ma concubine","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":298},{"title":"La sirène du Mississipi","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":299},{"title":"Les temps Modernes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":300},{"title":"Les Fantômes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":301},{"title":"Lost Highway","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":302},{"title":"L'équipée Sauvage","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":303},{"title":"Les choses de la vie","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":304},{"title":"L'homme qui rétrécit","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":305},{"title":"La passion de Jeanne d'arc","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":306},{"title":"Le Miroir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":307},{"title":"La pièce rapportée","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":308},{"title":"Les graines du figuier sauvage","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":309},{"title":"Portier de nuit","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":310},{"title":"L'empire des sens","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":311},{"title":"The Last Picture Show","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":312},{"title":"1900.0","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":313},{"title":"Stalker","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":314},{"title":"Mommy","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":315},{"title":"Plein soleil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":316},{"title":"L'homme qui tua Liberty Valance","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":317},{"title":"Le magicien d'OZ","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":318},{"title":"La soif du mal","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":319},{"title":"The element of crime","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":320},{"title":"Epidemic","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":321},{"title":"Europa","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":322},{"title":"Breaking the waves","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":323},{"title":"Les idiots","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":324},{"title":"Dancer in the dark","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":325},{"title":"Dogville","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":326},{"title":"The five obstructions","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":327},{"title":"Manderlay","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":328},{"title":"Le direktør","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":329},{"title":"Antichrist","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":330},{"title":"Nymphomaniac","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":331},{"title":"Medea","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":332},{"title":"Le chanteur de jazz","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":333},{"title":"Le grand sommeil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":334},{"title":"Le trésor de la sierra madre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":335},{"title":"Key largo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":336},{"title":"Un tramway nommé désir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":337},{"title":"À l'est d'Eden","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":338},{"title":"La fureur de vivre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":339},{"title":"La prisonniere du désert","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":340},{"title":"Rio bravo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":341},{"title":"Qu'est-il arrivé à baby jane?","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":342},{"title":"Les révoltés de bounty","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":343},{"title":"La conquête de l'ouest","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":344},{"title":"Le docteur Jivago","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":345},{"title":"Qui a peu de Virginia woolf?","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":346},{"title":"Le chant du Missouri","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":347},{"title":"Un jour à New York","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":348},{"title":"Un américain à Paris","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":349},{"title":"Embrasse moi, chérie","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":350},{"title":"Une étoile est née","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":351},{"title":"Gigi","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":352},{"title":"Le bal des vampires","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":353},{"title":"Les goonies","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":354},{"title":"Les liaisons dangereuses","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":355},{"title":"Beetlejuice","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":356},{"title":"Bodyguard","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":357},{"title":"Entretien avec un vampire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":358},{"title":"Space jam","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":359},{"title":"Mars attacks!","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":360},{"title":"eyes wide shut","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":361},{"title":"Ocean's Eleven","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":362},{"title":"Un long dimanche de fiançailles","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":363},{"title":"Le pôle express","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":364},{"title":"Very bad trip","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":365},{"title":"The artist","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":366},{"title":"La grande aventure lego","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":367},{"title":"A star is born","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":368},{"title":"Elvis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":369},{"title":"Bullitt","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":370},{"title":"La horde sauvage","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":371},{"title":"L'inspecteur Harry","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":372},{"title":"Jeremiah Johnson","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":373},{"title":"Délivrance","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":374},{"title":"La balade sauvage","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":375},{"title":"Barry lyndon","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":376},{"title":"Les hommes du président","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":377},{"title":"La couleur pourpre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":378},{"title":"L'arme fatale","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":379},{"title":"Empire du soleil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":380},{"title":"Les évadés","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":381},{"title":"La ligne verte","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":382},{"title":"Training day","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":383},{"title":"Mystic river","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":384},{"title":"Grand torino","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":385},{"title":"Argo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":386},{"title":"American sniper","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":387},{"title":"Dunkerque","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":388},{"title":"French connection","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":389},{"title":"French connection 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":390},{"title":"Superman (1978)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":391},{"title":"Vendredi 13","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":392},{"title":"Poltergeist","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":393},{"title":"Gremlins","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":394},{"title":"Batman","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":395},{"title":"Le géant de fer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":396},{"title":"Matrix","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":397},{"title":"Harry potter 1","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":398},{"title":"V pour vendetta","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":399},{"title":"Inception","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":400},{"title":"Interstellar","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":401},{"title":"Mad Max: fury road","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":402},{"title":"Ready player one","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":403},{"title":"Tenet","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":404},{"title":"Dune","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":405},{"title":"Paprika","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":406},{"title":"La boum","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":407},{"title":"La boum 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":408},{"title":"Creed","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":409},{"title":"Creed 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":410},{"title":"La gloire de mon père","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":411},{"title":"Le château de ma mère","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":412},{"title":"007 vivre et laisser mourir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":413},{"title":"007 l'homme au pistolet d'or","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":414},{"title":"007 L'espion qui m'aimait","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":415},{"title":"007 moonraker","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":416},{"title":"007 rien que pour vos yeux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":417},{"title":"007 octopussy","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":418},{"title":"007 dangereusement vôtre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":419},{"title":"Rocky","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":420},{"title":"Rocky 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":421},{"title":"Rocky 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":422},{"title":"Rocky 4","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":423},{"title":"Rocky 5","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":424},{"title":"Rocky balboa","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":425},{"title":"Magnum force","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":426},{"title":"L'inspecteur ne renonce jamais","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":427},{"title":"Le retour de l'inspecteur harry","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":428},{"title":"La dernière cible","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":429},{"title":"Shoah","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":430},{"title":"Le procès Paradine","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":431},{"title":"La maison du docteur edwardes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":432},{"title":"Les enchaînés","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":433},{"title":"Rebecca","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":434},{"title":"Le passé ne meurt pas","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":435},{"title":"Downhill","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":436},{"title":"The lodger","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":437},{"title":"Les 39 marches","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":438},{"title":"Le cercle noir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":439},{"title":"Le messager de la mort","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":440},{"title":"Les baroudeurs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":441},{"title":"Le bagarreur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":442},{"title":"Le flic de beverly hills","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":443},{"title":"Le flic de beverly hills 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":444},{"title":"Le flic de beverly hills 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":445},{"title":"Rambo 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":446},{"title":"Rambo 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":447},{"title":"Inspecteur la bavure","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":448},{"title":"Deux heures moins le quart avant j.c","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":449},{"title":"Banzaï","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":450},{"title":"La femme de mon pote","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":451},{"title":"Tchao pantin","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":452},{"title":"Borsalino and co","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":453},{"title":"Le crime était presque parfait","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":454},{"title":"L'inconnu du nord express","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":455},{"title":"Les hommes préfèrent les blondes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":456},{"title":"Comment épouser un millionnaire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":457},{"title":"Rivière sans retour","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":458},{"title":"La joyeuse parade","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":459},{"title":"Sept ans de réflexion","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":460},{"title":"Certains l'aiment chaud","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":461},{"title":"Les désaxés","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":462},{"title":"Arrêt d'autobus","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":463},{"title":"Niagara","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":464},{"title":"Conseil de famille","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":465},{"title":"Betrayed","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":466},{"title":"Music Box","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":467},{"title":"La petite apocalypse","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":468},{"title":"Mad city","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":469},{"title":"Amen.","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":470},{"title":"Le couperet","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":471},{"title":"Eden a l'ouest","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":472},{"title":"Le capital","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":473},{"title":"Compartiment tueurs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":474},{"title":"Un homme de trop","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":475},{"title":"Z","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":476},{"title":"L'aveu","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":477},{"title":"État de siège","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":478},{"title":"Section spéciale","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":479},{"title":"Clair de femme","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":480},{"title":"Missing","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":481},{"title":"Hanna K.","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":482},{"title":"Le quai des brumes","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":483},{"title":"Les grandes vacances","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":484},{"title":"Angles d'attaque","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":485},{"title":"Confident royal","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":486},{"title":"Le monte-charge","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":487},{"title":"Madame de...","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":488},{"title":"Taxi roulotte et corrida","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":489},{"title":"Le cinquième élément","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":490},{"title":"La grande évasion","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":491},{"title":"Les mystères de paris","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":492},{"title":"Le gang","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":493},{"title":"Il était une fois.. la révolution","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":494},{"title":"Grease","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":495},{"title":"Cosa nostra","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":496},{"title":"John rambo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":497},{"title":"Sinatra all or nothing at all","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":498},{"title":"Nous sommes tous des assassins","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":499},{"title":"La bataille d'Angleterre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":500},{"title":"L'année du dragon","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":501},{"title":"Cartouche","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":502},{"title":"L'inconnu dans la maison","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":503},{"title":"Les heures sombres","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":504},{"title":"3h10 pour yuma","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":505},{"title":"Signé Arsène Lupin","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":506},{"title":"Godzilla","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":507},{"title":"Les vikings","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":508},{"title":"Hataril","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":509},{"title":"Monsieur Ibrahim et les fleurs du coran","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":510},{"title":"Comanche station","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":511},{"title":"Dans la ligne de mire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":512},{"title":"Les lions sont lâchés","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":513},{"title":"Cleopatre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":514},{"title":"Présumé innocent","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":515},{"title":"Clara et les chics types","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":516},{"title":"Les tribulations d'un chinois en Chine","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":517},{"title":"Le voleur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":518},{"title":"Les morfalous","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":519},{"title":"Le guignolo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":520},{"title":"Flic ou voyou","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":521},{"title":"L'alpagueur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":522},{"title":"L'incorrigible","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":523},{"title":"Le corps de mon ennemi","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":524},{"title":"Stavisky","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":525},{"title":"La grande vadrouille","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":526},{"title":"Tora! Tora! Tora!","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":527},{"title":"Little big man","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":528},{"title":"Elizabeth","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":529},{"title":"Elizabeth l'âge d'or","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":530},{"title":"Le mans","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":531},{"title":"La valise","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":532},{"title":"Le tatoué","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":533},{"title":"Le petit baigneur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":534},{"title":"La soupe aux choux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":535},{"title":"Fantomas contre scotland yard","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":536},{"title":"Fantomas","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":537},{"title":"Les aventures de rabbi jacob","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":538},{"title":"Le gendarme et les gendarmettes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":539},{"title":"Fantomas se déchaîne","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":540},{"title":"Le gendarme  de saint Tropez","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":541},{"title":"Le gendarme a new York","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":542},{"title":"Le gendarme se marie","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":543},{"title":"Le gendarme et les extra-terrestres","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":544},{"title":"Le gendarme en balade","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":545},{"title":"The blues brothers","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":546},{"title":"Gold","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":547},{"title":"La femme du boulanger","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":548},{"title":"L'école buissonnière","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":549},{"title":"Heat","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":550},{"title":"La fièvre du samedi soir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":551},{"title":"La dernière caravane","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":552},{"title":"Les briseurs de barages","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":553},{"title":"Lacombe lucien","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":554},{"title":"Quo Vadis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":555},{"title":"Le franciscain de bourges","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":556},{"title":"Les 4 plumes blanches","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":557},{"title":"Diplomatie","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":558},{"title":"Le parfum","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":559},{"title":"Justice est faite","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":560},{"title":"Pentagon papers","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":561},{"title":"La jument verte","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":562},{"title":"Du rififi chez les hommes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":563},{"title":"Spartacus","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":564},{"title":"Un drôle de paroissien","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":565},{"title":"Quai d'Orsay","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":566},{"title":"L'œil du monocle","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":567},{"title":"Un condamné à mort s'est échappé","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":568},{"title":"Buffet froid","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":569},{"title":"D'un film à l'autre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":570},{"title":"Zorba le grec","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":571},{"title":"Garçon!","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":572},{"title":"Rising sun","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":573},{"title":"Le plaisir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":574},{"title":"La grande sauterelle","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":575},{"title":"Fleur d'os","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":576},{"title":"Les hommes ne pensent qu'à ça...","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":577},{"title":"Mortelle randonnée","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":578},{"title":"Les diaboliques","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":579},{"title":"Les petites fugues","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":580},{"title":"The Blob (1958)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":581},{"title":"The Blob (1988)","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":582},{"title":"Elephant Man","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":583},{"title":"La sanction","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":584},{"title":"L'express du colonel von ryan","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":585},{"title":"Elle boit pas elle fume pas elle drague pas","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":586},{"title":"Le cri du cormoran","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":587},{"title":"Silverado","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":588},{"title":"Le jour le plus long","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":589},{"title":"L'égyptien","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":590},{"title":"L'aile ou la cuisse","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":591},{"title":"Rencontre du troisième type","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":592},{"title":"chisum","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":593},{"title":"Josey Wales hors-la-loi","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":594},{"title":"Le grand sam","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":595},{"title":"A bridge too far","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":596},{"title":"L'homme au masque de fer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":597},{"title":"Braveheart","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":598},{"title":"L'or de mackenna","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":599},{"title":"Marie-Antoinette","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":600},{"title":"Gandhi","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":601},{"title":"Tant qu'il y aura des hommes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":602},{"title":"patton","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":603},{"title":"Hair","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":604},{"title":"Les dix commandements","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":605},{"title":"Les sept mercenaires","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":606},{"title":"l'homme des hautes plaines","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":607},{"title":"Au bout de la nuit","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":608},{"title":"Le massacre de fort apache","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":609},{"title":"Alice au pays des merveilles","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":610},{"title":"La guerre des boutons","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":611},{"title":"Les voleurs de train","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":612},{"title":"Les cordes de la potence","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":613},{"title":"Pendez-les haut et court","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":614},{"title":"Nous irons tous au paradis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":615},{"title":"Fantasia","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":616},{"title":"Le rouge est mis","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":617},{"title":"Le silencieux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":618},{"title":"L'évadé d'alcatraz","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":619},{"title":"Un prince a new York","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":620},{"title":"Un fauteuil pour deux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":621},{"title":"le troisième homme","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":622},{"title":"La bonne année","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":623},{"title":"Rio lobo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":624},{"title":"Le comte de monte cristo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":625},{"title":"Mon oncle Benjamin","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":626},{"title":"Marathonman","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":627},{"title":"Le jouet","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":628},{"title":"Le corniaud","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":629},{"title":"Burlesque","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":630},{"title":"Le sucre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":631},{"title":"L'affaire des poisons","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":632},{"title":"Topkapi","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":633},{"title":"Les risques du métier","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":634},{"title":"La vie dissolue de Gérard floque","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":635},{"title":"Un poisson nommé wanda","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":636},{"title":"Les révoltés du bounty","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":637},{"title":"Le choc des titans","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":638},{"title":"Jusqu'au bout de rêve","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":639},{"title":"Galia","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":640},{"title":"Le cid","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":641},{"title":"Attention une femme peut en cacher","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":642},{"title":"La main au collet","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":643},{"title":"Ascenseur pour l'échafaud","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":644},{"title":"Barabbas","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":645},{"title":"Gladiator","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":646},{"title":"Comme un cheveu sur la soupe","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":647},{"title":"Bébert et l'omnibus","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":648},{"title":"Les 3 jours du condor","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":649},{"title":"Les professionnels","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":650},{"title":"Toi...Le venin","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":651},{"title":"Un taxi pour tobrouk","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":652},{"title":"La 7ème cible","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":653},{"title":"La gifle","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":654},{"title":"Pour la peau d'un flic","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":655},{"title":"Le désordre et la nuit","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":656},{"title":"La caravane de feu","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":657},{"title":"L'arnaque","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":658},{"title":"Un papillon sur l'épaule","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":659},{"title":"Quand les aigles attaquent","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":660},{"title":"La liste de schindler","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":661},{"title":"Les mariés de l'an deux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":662},{"title":"Joyeuses paques","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":663},{"title":"Ma vie avec liberace","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":664},{"title":"La belle au bois dormant","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":665},{"title":"Dumbo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":666},{"title":"Merlin l'enchanteur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":667},{"title":"Les 101 dalmatien","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":668},{"title":"La belle et le clochard","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":669},{"title":"Le magnifique","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":670},{"title":"Pierrot le fou","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":671},{"title":"Le professionnel","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":672},{"title":"Les lyonnais","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":673},{"title":"Arnaques crimes et botanique","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":674},{"title":"Alexandre le bienbeureux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":675},{"title":"Thérèse raquin","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":676},{"title":"La dame de fer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":677},{"title":"Les 100 fusils","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":678},{"title":"Les 8 salopards","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":679},{"title":"Une bible et un fusil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":680},{"title":"Taureau","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":681},{"title":"Les pleins pouvoirs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":682},{"title":"Wall street","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":683},{"title":"Wall street l'argent ne dort jamais","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":684},{"title":"Sept morts sur ordonnance","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":685},{"title":"Les géants de l'ouest","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":686},{"title":"Mort d'un pourri","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":687},{"title":"Boulevard de la mort","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":688},{"title":"Tout feu tout flamme","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":689},{"title":"Joe kidd","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":690},{"title":"Les demoiselles de rochefort","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":691},{"title":"I comme icare","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":692},{"title":"Le silence de la mer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":693},{"title":"Règlement de compte à ok corral","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":694},{"title":"Pale rider le cavalier solitaire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":695},{"title":"The cowboys","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":696},{"title":"Razzia sur la chnouf","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":697},{"title":"L'affaire Thomas crown","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":698},{"title":"El dorado","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":699},{"title":"True grit","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":700},{"title":"Samson et dalila","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":701},{"title":"Paradis perdu","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":702},{"title":"L'étrangleur de Boston","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":703},{"title":"Deux hommes dans manhattan","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":704},{"title":"Mary poppins","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":705},{"title":"L'héritier","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":706},{"title":"Trois hommes à abattre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":707},{"title":"West Side Story (1961)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":708},{"title":"Mélodie en sous-sol","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":709},{"title":"Les bronzés 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":710},{"title":"Les bronzés font du ski","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":711},{"title":"Les bronzés","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":712},{"title":"007 james bond contre dr no","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":713},{"title":"007 Bon baisers de Russie","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":714},{"title":"007 goldfinger","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":715},{"title":"007 Opération tonnerre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":716},{"title":"007 on ne vit que deux fois","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":717},{"title":"007 les diamants sont éternels","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":718},{"title":"De l'or pour les braves","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":719},{"title":"Conan le barbare","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":720},{"title":"Conan le destructeur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":721},{"title":"Deux hommes dans la ville","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":722},{"title":"Saco et vanzetti","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":723},{"title":"Les ripoux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":724},{"title":"The mummy","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":725},{"title":"The mummy returns","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":726},{"title":"The mummy 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":727},{"title":"La chute de l'empire romain","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":728},{"title":"Ripoux contre ripoux","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":729},{"title":"Ne nous fachons pas","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":730},{"title":"Le pacha","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":731},{"title":"The party","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":732},{"title":"Il faut sauver le soldat ryan","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":733},{"title":"Rock","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":734},{"title":"Marie-octobre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":735},{"title":"Ni vu ni connu","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":736},{"title":"Charade","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":737},{"title":"French cancan","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":738},{"title":"Voici le temps des assassins","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":739},{"title":"Le canardeur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":740},{"title":"The King of new york","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":741},{"title":"Le chien des baskerville","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":742},{"title":"Le clan des siciliens","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":743},{"title":"Papy fait de la résistance","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":744},{"title":"Le père Noël est une ordure","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":745},{"title":"Les comancheros","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":746},{"title":"L'aventure c'est L'aventure","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":747},{"title":"Usual suspects","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":748},{"title":"Les amants de vérone","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":749},{"title":"Les compères","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":750},{"title":"Les fugitifs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":751},{"title":"Cendrillon","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":752},{"title":"Bambi","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":753},{"title":"Le livre de la jungle","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":754},{"title":"Blanche neige","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":755},{"title":"Peter pan","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":756},{"title":"Pinocchio","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":757},{"title":"Sin city","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":758},{"title":"Sin city j'ai tué pour elle","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":759},{"title":"Sous surveillance","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":760},{"title":"Hibernatus","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":761},{"title":"La folie des grandeurs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":762},{"title":"Aviator","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":763},{"title":"Créance de sang","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":764},{"title":"On a volé la cuisse de Jupiter","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":765},{"title":"Tendre poulet","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":766},{"title":"La traversée de paris","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":767},{"title":"La poison","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":768},{"title":"Une si jolie petite plage","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":769},{"title":"L'assassin habite au 21","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":770},{"title":"Big jake","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":771},{"title":"Les barbouzes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":772},{"title":"Les tontons flingueurs","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":773},{"title":"Oscar","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":774},{"title":"L'homme orchestre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":775},{"title":"Le grand restaurant","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":776},{"title":"Une messe pour Dracula","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":777},{"title":"La chèvre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":778},{"title":"Le voyage fantastique","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":779},{"title":"Bandolero","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":780},{"title":"Meurtre au soleil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":781},{"title":"Mort sur le nil","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":782},{"title":"Un témoin dans la ville","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":783},{"title":"Wyatt garp","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":784},{"title":"La canonniere du yang-tsé","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":785},{"title":"La tour infernale","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":786},{"title":"Dracula et les femmes","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":787},{"title":"Le maître de guerre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":788},{"title":"Robin des bois prince des voleurs","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":789},{"title":"Gatsby le magnifique (1974)","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":790},{"title":"La relève","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":791},{"title":"Le crime de l'orient-express","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":792},{"title":"Danse avec les loups","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":793},{"title":"Carambolages","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":794},{"title":"Le grand Mclintock","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":795},{"title":"Les cannons de navarone","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":796},{"title":"Hondo","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":797},{"title":"Casino royale","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":798},{"title":"007 au service secret de sa majesté","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":799},{"title":"Guerre et paix","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":800},{"title":"Garde à vue","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":801},{"title":"Rocco et ses frères","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":802},{"title":"Les aventuriers","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":803},{"title":"Le casse","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":804},{"title":"Le mur de l'atlantique","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":805},{"title":"Lord of war","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":806},{"title":"Piège de cristal","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":807},{"title":"58 minutes pour vivre","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":808},{"title":"Une journée en enfer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":809},{"title":"Die hard 4 retour en enfer","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":810},{"title":"Die hard belle journée pour mourir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":811},{"title":"Escale à Hollywood","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":812},{"title":"Un jour à new York","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":813},{"title":"L'inconnu de las vegas","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":814},{"title":"Les sept voleurs de Chicago","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":815},{"title":"Géant","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":816},{"title":"Mon nom est personne","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":817},{"title":"Le flingueur","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":818},{"title":"Sierra torride","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":819},{"title":"Jules e jim","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":820},{"title":"Manchester by the sea","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":821},{"title":"There will be blood","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":822},{"title":"A nightmare on elm street","bluray":false,"bluray4k":true,"dvd":false,"steelbook":true,"id":823},{"title":"Invasion of the body snatchers","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":824},{"title":"Pirates des caraibes 3","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":825},{"title":"Prometheus","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":826},{"title":"Apocalypse  now","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":827},{"title":"Simple comme Sylvain","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":828},{"title":"Alien covenant","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":829},{"title":"Caligula","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":830},{"title":"La nuit américaine","bluray":true,"bluray4k":false,"dvd":true,"steelbook":true,"id":831},{"title":"Marius","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":832},{"title":"Fanny","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":833},{"title":"César","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":834},{"title":"Rambo last blood","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":835},{"title":"Expendables 2","bluray":true,"bluray4k":false,"dvd":true,"steelbook":true,"id":836},{"title":"Expendables 3","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":837},{"title":"Un mauvais fils","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":838},{"title":"L'armée des ombres","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":839},{"title":"l'amour ouf","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":840},{"title":"Poetic justice","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":841},{"title":"BONA","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":842},{"title":"L'ultime Razzia","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":843},{"title":"La Corde","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":844},{"title":"La règle du jeu","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":845},{"title":"Le trou","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":846},{"title":"Marie & Julien","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":847},{"title":"Trois couleurs rouge","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":848},{"title":"Trois couleurs blanc","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":849},{"title":"Trois couleurs bleu","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":850},{"title":"Un couteau dans le cœur","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":851},{"title":"Avec les compliments de l'auteur","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":852},{"title":"Haute tension","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":853},{"title":"Zion","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":854},{"title":"Le dossier Maldoror","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":855},{"title":"Boulevard du crépuscule","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":856},{"title":"Nosferatu (2024)","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":857},{"title":"Shanghai blues","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":858},{"title":"HO!","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":859},{"title":"Pale rider","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":860},{"title":"Inland empire","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":861},{"title":"Le lion du désert","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":862},{"title":"La strada","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":863},{"title":"House","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":864},{"title":"Twin peaks fire walk with me","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":865},{"title":"Under the skin","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":866},{"title":"Last days","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":867},{"title":"Honor among lovers","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":868},{"title":"L'homme de j'ai tué","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":869},{"title":"Merrily we go to hell","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":870},{"title":"Hot saturday","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":871},{"title":"Le baiser devant le miroir","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":872},{"title":"Le cantique des cantiques","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":873},{"title":"Chanteuse de cabaret","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":874},{"title":"L'école de la beauté","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":875},{"title":"Et demain?","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":876},{"title":"Histoire de fantôme chinois","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":877},{"title":"Histoire de fantôme chinois II","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":878},{"title":"Histoire de fantôme chinois III","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":879},{"title":"La bataille d'Alger","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":880},{"title":"Conversation secrète","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":881},{"title":"Party girl","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":882},{"title":"The Master","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":883},{"title":"Jeune fille sous le ciel bleu","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":884},{"title":"Hundreds of beavers","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":885},{"title":"Femme de champion","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":886},{"title":"À bicyclette","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":887},{"title":"La nuit du chasseur","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":888},{"title":"Edward au mains d'argent","bluray":true,"bluray4k":true,"dvd":false,"steelbook":true,"id":889},{"title":"The mask","bluray":true,"bluray4k":false,"dvd":false,"steelbook":true,"id":890},{"title":"Highlander","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":891},{"title":"Reservoir Dogs","bluray":true,"bluray4k":true,"dvd":true,"steelbook":true,"id":892},{"title":"2046.0","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":893},{"title":"Pusher","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":894},{"title":"Pusher II","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":895},{"title":"Pusher III","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":896},{"title":"Le gambler","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":897},{"title":"Pacifiction","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":898},{"title":"YI YI","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":899},{"title":"Rivière de nuit","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":900},{"title":"Women","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":901},{"title":"Padmaavat","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":902},{"title":"2 sœurs","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":903},{"title":"À toute épreuve","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":904},{"title":"La légende de baahubali 1 et 2","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":905},{"title":"La femme publique","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":906},{"title":"The outsiders","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":907},{"title":"Sinners","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":908},{"title":"Mission impossible dead reckoning","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":909},{"title":"L'échelle de jacob","bluray":false,"bluray4k":true,"dvd":false,"steelbook":true,"id":910},{"title":"Café flesh","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":911},{"title":"9 semaines et demi","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":912},{"title":"Le grand silence","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":913},{"title":"Mission impossible the final reckoning","bluray":false,"bluray4k":true,"dvd":false,"steelbook":true,"id":914},{"title":"The lighthouse","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":915},{"title":"Le pacte des loups","bluray":false,"bluray4k":true,"dvd":false,"steelbook":false,"id":916},{"title":"Antiporno","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":917},{"title":"Napoleon vu par Abel gance","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":918},{"title":"Mo'better blues","bluray":true,"bluray4k":false,"dvd":true,"steelbook":false,"id":919},{"title":"Reflet dans un diamant mort","bluray":true,"bluray4k":false,"dvd":false,"steelbook":false,"id":920},{"title":"Raigyo","bluray":false,"bluray4k":false,"dvd":true,"steelbook":false,"id":921},{"title":"The killer","bluray":true,"bluray4k":true,"dvd":false,"steelbook":false,"id":922}];
 
 let films = [], currentFilter = 'all', currentView = 'grid';
-let posterCache = {};
-let searchTimer = null;
+let posterCache = {}, filmMeta = {};
+let searchTimer = null, searchMetaTimer = null;
 let currentTmdbFilm = null;
-let currentFormats = {bluray:false, bluray4k:false, dvd:false, steelbook:false};
+let currentFormats = {bluray:false,bluray4k:false,dvd:false,steelbook:false};
+let ctxFilmId = null, ctxFormats = {};
+let statsLoaded = false;
 
 // ---- LOGIN ----
 function checkPwd() {
@@ -285,198 +442,72 @@ function init() {
   catch(e) { films = DEFAULT_FILMS.map((f,i)=>({...f,id:i+1})); }
   try { posterCache = JSON.parse(localStorage.getItem(POSTER_KEY)) || {}; }
   catch(e) { posterCache = {}; }
+  try { filmMeta = JSON.parse(localStorage.getItem(META_KEY)) || {}; }
+  catch(e) { filmMeta = {}; }
   render();
 }
 function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(films)); } catch(e){} }
 function savePosters() { try { localStorage.setItem(POSTER_KEY, JSON.stringify(posterCache)); } catch(e){} }
+function saveMeta() { try { localStorage.setItem(META_KEY, JSON.stringify(filmMeta)); } catch(e){} }
 
-// ---- TMDB SEARCH (live) ----
-function searchTMDB(query) {
-  clearTimeout(searchTimer);
-  const results = document.getElementById('tmdb-results');
-  if (!query || query.length < 2) { results.style.display = 'none'; return; }
-  document.getElementById('search-spinner').style.display = 'block';
-  searchTimer = setTimeout(async () => {
-    try {
-      const r = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}&language=fr-FR&page=1`);
-      const d = await r.json();
-      document.getElementById('search-spinner').style.display = 'none';
-      if (!d.results || d.results.length === 0) {
-        results.style.display = 'block';
-        results.innerHTML = '<div class="tmdb-no-results">Aucun résultat pour "' + esc(query) + '"</div>';
-        return;
-      }
-      const top = d.results.slice(0, 8);
-      results.style.display = 'block';
-      results.innerHTML = top.map(m => {
-        const year = m.release_date ? m.release_date.substring(0,4) : '';
-        const poster = m.poster_path ? 'https://image.tmdb.org/t/p/w92' + m.poster_path : '';
-        const existing = findInCollection(m.title, year);
-        const ownedBadges = existing ? [
-          existing.bluray ? '<span class="tmdb-badge owned">BLU-RAY</span>' : '',
-          existing.bluray4k ? '<span class="tmdb-badge owned">4K</span>' : '',
-          existing.dvd ? '<span class="tmdb-badge owned">DVD</span>' : '',
-          existing.steelbook ? '<span class="tmdb-badge owned">SB</span>' : ''
-        ].join('') : '<span class="tmdb-badge notowned">Pas dans ta collection</span>';
-        return `<div class="tmdb-result" onclick="selectFilm(${m.id},'${esc(m.title).replace(/'/g,"\\'")}','${year}','${poster}')">
-          ${poster ? `<img class="tmdb-thumb" src="${poster}" alt="">` : '<div class="tmdb-thumb"></div>'}
-          <div class="tmdb-info">
-            <div class="tmdb-title">${esc(m.title)}</div>
-            <div class="tmdb-year">${year}</div>
-            <div class="tmdb-owned">${ownedBadges}</div>
-          </div>
-        </div>`;
-      }).join('');
-    } catch(e) {
-      document.getElementById('search-spinner').style.display = 'none';
-      results.style.display = 'none';
-    }
-  }, 350);
+// ---- NAVIGATION ----
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById('nav-' + page).classList.add('active');
+  if (page === 'stats' && !statsLoaded) loadStats();
 }
 
-function findInCollection(title, year) {
-  const clean = t => t.toLowerCase().trim();
-  return films.find(f => {
-    const ft = clean(f.title.replace(/\s*\(\d{4}\)$/, ''));
-    const mt = clean(title);
-    return ft === mt || f.title.toLowerCase() === title.toLowerCase();
-  });
+// ---- SEARCH (title + actor + director) ----
+function handleSearch() {
+  clearTimeout(searchMetaTimer);
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  if (!q || q.length < 2) { render(); return; }
+  // First render by title immediately
+  render();
+  // Then enrich with meta search
+  searchMetaTimer = setTimeout(() => renderWithMetaSearch(q), 300);
 }
 
-function selectFilm(tmdbId, title, year, poster) {
-  document.getElementById('tmdb-results').style.display = 'none';
-  document.getElementById('add-search').value = '';
-
-  // Store current film info
-  currentTmdbFilm = { id: tmdbId, title, year, poster };
-
-  // Check if already in collection
-  const existing = findInCollection(title, year);
-
-  // Set poster
-  const posterEl = document.getElementById('fmt-poster');
-  if (poster) { posterEl.src = poster; posterEl.style.display = 'block'; }
-  else { posterEl.style.display = 'none'; }
-
-  document.getElementById('fmt-title').textContent = title;
-  document.getElementById('fmt-year').textContent = year ? '(' + year + ')' : '';
-
-  // Pre-fill formats from existing or reset
-  currentFormats = existing
-    ? { bluray: existing.bluray, bluray4k: existing.bluray4k, dvd: existing.dvd, steelbook: existing.steelbook }
-    : { bluray: false, bluray4k: false, dvd: false, steelbook: false };
-
-  // Update save button text
-  const saveBtn = document.querySelector('.fmt-btn-save');
-  saveBtn.textContent = existing ? 'Mettre à jour ma collection' : 'Ajouter à ma collection';
-
-  updateFmtUI();
-  document.getElementById('fmt-modal').classList.add('show');
-}
-
-function toggleFmt(fmt) {
-  currentFormats[fmt] = !currentFormats[fmt];
-  updateFmtUI();
-}
-
-function updateFmtUI() {
-  const map = {
-    bluray: {el:'fmt-blu', chk:'chk-blu', cls:'selected-blu', ownedCls:'owned-blu'},
-    bluray4k: {el:'fmt-k4', chk:'chk-k4', cls:'selected-k4', ownedCls:'owned-k4'},
-    dvd: {el:'fmt-dvd', chk:'chk-dvd', cls:'selected-dvd', ownedCls:'owned-dvd'},
-    steelbook: {el:'fmt-steel', chk:'chk-steel', cls:'selected-steel', ownedCls:'owned-steel'}
-  };
-  Object.entries(map).forEach(([fmt, cfg]) => {
-    const el = document.getElementById(cfg.el);
-    const chk = document.getElementById(cfg.chk);
-    el.classList.remove(cfg.cls, cfg.ownedCls);
-    if (currentFormats[fmt]) {
-      el.classList.add(cfg.cls);
-      chk.textContent = '✅';
-    } else {
-      chk.textContent = '○';
+async function renderWithMetaSearch(q) {
+  // Find films matching by title already shown
+  const titleMatches = new Set(getFilteredByTitle(q).map(f => f.id));
+  // Search meta cache for actor/director matches
+  const metaMatches = new Set();
+  Object.entries(filmMeta).forEach(([key, meta]) => {
+    if (!meta) return;
+    const directorMatch = meta.director && meta.director.toLowerCase().includes(q);
+    const actorMatch = meta.cast && meta.cast.some(a => a.name && a.name.toLowerCase().includes(q));
+    if (directorMatch || actorMatch) {
+      // Find film by title key
+      const film = films.find(f => f.title.toLowerCase().trim() === key);
+      if (film) metaMatches.add(film.id);
     }
   });
-}
-
-function closeFmtModal() {
-  document.getElementById('fmt-modal').classList.remove('show');
-  currentTmdbFilm = null;
-}
-
-function saveFilm() {
-  if (!currentTmdbFilm) return;
-  if (!currentFormats.bluray && !currentFormats.bluray4k && !currentFormats.dvd && !currentFormats.steelbook) {
-    alert('Sélectionne au moins un format !'); return;
-  }
-
-  const { title, year, poster } = currentTmdbFilm;
-  const displayTitle = year ? `${title} (${year})` : title;
-
-  // Cache poster with full res
-  const fullPoster = poster.replace('/w92/', '/w300/');
-  if (poster) { posterCache[displayTitle.toLowerCase().trim()] = fullPoster; savePosters(); }
-
-  const existing = findInCollection(title, year);
-  if (existing) {
-    // Update formats
-    existing.bluray = currentFormats.bluray;
-    existing.bluray4k = currentFormats.bluray4k;
-    existing.dvd = currentFormats.dvd;
-    existing.steelbook = currentFormats.steelbook;
-    save(); render(); closeFmtModal();
-    toast('✅ "' + title + '" mis à jour !');
-  } else {
-    films.push({
-      id: Date.now() + Math.random(),
-      title: displayTitle,
-      bluray: currentFormats.bluray,
-      bluray4k: currentFormats.bluray4k,
-      dvd: currentFormats.dvd,
-      steelbook: currentFormats.steelbook
-    });
-    save(); render(); closeFmtModal();
-    toast('✅ "' + title + '" ajouté !');
+  const allMatches = new Set([...titleMatches, ...metaMatches]);
+  if (metaMatches.size > 0) {
+    const filtered = films.filter(f => allMatches.has(f.id) && matchesFilter(f));
+    document.getElementById('result-count').textContent = filtered.length + ' film' + (filtered.length!==1?'s':'') + ' (titre, acteur, réal.)';
+    currentView==='grid' ? renderGrid(filtered) : renderList(filtered);
   }
 }
 
-// ---- POSTER ----
-async function getPoster(title, filmId) {
-  const key = title.toLowerCase().trim();
-  if (posterCache[key] !== undefined) return posterCache[key];
-  const yearMatch = title.match(/\((\d{4})\)$/);
-  const year = yearMatch ? yearMatch[1] : null;
-  const cleanTitle = title.replace(/\s*\(\d{4}\)$/, '').trim();
-  const variations = [cleanTitle, cleanTitle.replace(/^(le |la |les |l'|un |une |des )/i,'').trim()];
-  for (const lang of ['fr-FR','en-US']) {
-    for (const v of [...new Set(variations)]) {
-      try {
-        let url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(v)}&language=${lang}`;
-        if (year) url += `&year=${year}`;
-        const r = await fetch(url);
-        const d = await r.json();
-        if (d.results?.length > 0) {
-          let best = d.results[0];
-          if (year) { const ym = d.results.find(m => m.release_date?.startsWith(year)); if (ym) best = ym; }
-          if (best.poster_path) {
-            const imgUrl = 'https://image.tmdb.org/t/p/w300' + best.poster_path;
-            posterCache[key] = imgUrl; savePosters();
-            updatePosterDOM(filmId, imgUrl); return imgUrl;
-          }
-        }
-      } catch(e) {}
-    }
-  }
-  posterCache[key] = null; return null;
+function getFilteredByTitle(q) {
+  return films.filter(f => (!q || f.title.toLowerCase().includes(q)) && matchesFilter(f));
 }
 
-function updatePosterDOM(id, url) {
-  const gp = document.querySelector(`.grid-poster[data-id="${id}"]`);
-  if (gp) { gp.src = url; gp.classList.add('loaded'); }
-  const ph = document.querySelector(`.poster-ph[data-id="${id}"]`);
-  if (ph) ph.style.display = 'none';
-  const lp = document.querySelector(`.list-thumb[data-id="${id}"]`);
-  if (lp) { lp.src = url; lp.style.opacity = '1'; }
+function matchesFilter(f) {
+  if (currentFilter==='bluray') return f.bluray===true;
+  if (currentFilter==='bluray4k') return f.bluray4k===true;
+  if (currentFilter==='dvd') return f.dvd===true;
+  if (currentFilter==='steelbook') return f.steelbook===true;
+  return true;
+}
+
+function getFiltered() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  return films.filter(f => (!q || f.title.toLowerCase().includes(q)) && matchesFilter(f));
 }
 
 // ---- RENDER ----
@@ -486,19 +517,6 @@ function updateStats() {
   document.getElementById('st-4k').textContent = '● ' + films.filter(f=>f.bluray4k).length + ' 4K';
   document.getElementById('st-dvd').textContent = '● ' + films.filter(f=>f.dvd).length + ' DVD';
   document.getElementById('st-steel').textContent = '● ' + films.filter(f=>f.steelbook).length + ' STEELBOOK';
-}
-
-function getFiltered() {
-  const q = document.getElementById('search').value.toLowerCase().trim();
-  return films.filter(f => {
-    const matchTitle = !q || f.title.toLowerCase().includes(q);
-    let matchFmt = true;
-    if (currentFilter === 'bluray') matchFmt = f.bluray === true;
-    else if (currentFilter === 'bluray4k') matchFmt = f.bluray4k === true;
-    else if (currentFilter === 'dvd') matchFmt = f.dvd === true;
-    else if (currentFilter === 'steelbook') matchFmt = f.steelbook === true;
-    return matchTitle && matchFmt;
-  });
 }
 
 function render() {
@@ -520,15 +538,15 @@ function renderGrid(filtered) {
     ].join('');
     return `<div class="grid-card">
       ${f.steelbook?'<div class="steel-crown">👑</div>':''}
-      <div class="poster-wrap">
+      <div class="poster-wrap" onclick="openFilmDetail(${f.id})">
         <div class="poster-ph" data-id="${f.id}" style="${hasImg?'display:none':''}">🎬</div>
         <img class="grid-poster${hasImg?' loaded':''}" data-id="${f.id}" src="${hasImg?cached:''}" alt="" loading="lazy">
       </div>
+      <div class="card-menu-btn" onclick="openCtxMenu(event,${f.id})">⋯</div>
       <div class="grid-info">
         <div class="grid-title">${esc(f.title)}</div>
         <div class="grid-badges">${badges}</div>
       </div>
-      <button class="grid-del" onclick="deleteFilm(${f.id},event)">✕</button>
     </div>`;
   }).join('');
   loadPosters(filtered);
@@ -540,12 +558,12 @@ function renderList(filtered) {
     const src = (cached && cached !== null) ? cached : '';
     return `<tr>
       <td><div class="list-title-cell">
-        <img class="list-thumb" data-id="${f.id}" src="${src}" alt="" loading="lazy" style="opacity:${src?'1':'.2'}">
-        ${esc(f.title)}
+        <img class="list-thumb" data-id="${f.id}" src="${src}" alt="" loading="lazy" style="opacity:${src?'1':'.3'}" onclick="openFilmDetail(${f.id})">
+        <span onclick="openFilmDetail(${f.id})" style="cursor:pointer">${esc(f.title)}</span>
       </div></td>
       <td>${dot(f.bluray,'blu')}</td><td>${dot(f.bluray4k,'4k')}</td>
       <td>${dot(f.dvd,'dvd')}</td><td>${dot(f.steelbook,'steel')}</td>
-      <td><button class="del-btn" onclick="deleteFilm(${f.id},event)">✕</button></td>
+      <td><button class="del-btn" onclick="openCtxMenu(event,${f.id})">⋯</button></td>
     </tr>`;
   }).join('');
   loadPosters(filtered);
@@ -555,7 +573,7 @@ async function loadPosters(filtered) {
   const uncached = filtered.filter(f => posterCache[f.title.toLowerCase().trim()] === undefined);
   for (let i = 0; i < uncached.length; i += 5) {
     await Promise.all(uncached.slice(i,i+5).map(f => getPoster(f.title, f.id)));
-    await new Promise(r => setTimeout(r, 250));
+    await new Promise(r => setTimeout(r, 200));
   }
 }
 
@@ -574,30 +592,455 @@ function setView(v) {
 function setFilter(f, btn) {
   currentFilter = f;
   ['f-all','f-blu','f-4k','f-dvd','f-steel'].forEach(id => document.getElementById(id).className = 'fbtn');
-  const clsMap = {all:'fbtn fa', bluray:'fbtn fb', bluray4k:'fbtn f4', dvd:'fbtn fd', steelbook:'fbtn fs'};
-  btn.className = clsMap[f] || 'fbtn fa';
+  btn.className = {all:'fbtn fa',bluray:'fbtn fb',bluray4k:'fbtn f4',dvd:'fbtn fd',steelbook:'fbtn fs'}[f]||'fbtn fa';
   render();
 }
 
-function deleteFilm(id, e) {
-  e&&e.stopPropagation();
-  const f = films.find(x=>x.id==id);
-  if (!f||!confirm('Supprimer "'+f.title+'" ?')) return;
-  films = films.filter(x=>x.id!=id);
+// ---- CONTEXT MENU (3 dots) ----
+function openCtxMenu(e, filmId) {
+  e.stopPropagation();
+  const f = films.find(x=>x.id==filmId);
+  if (!f) return;
+  ctxFilmId = filmId;
+  ctxFormats = {bluray:f.bluray,bluray4k:f.bluray4k,dvd:f.dvd,steelbook:f.steelbook};
+  document.getElementById('ctx-title').textContent = f.title;
+  const meta = filmMeta[f.title.toLowerCase().trim()];
+  document.getElementById('ctx-sub').textContent = meta ? (meta.director || '') + (meta.year ? ' • ' + meta.year : '') : '';
+  updateCtxFmts();
+  const menu = document.getElementById('ctx-menu');
+  menu.style.display = 'block';
+  document.getElementById('ctx-overlay').style.display = 'block';
+  // Position near tap
+  const x = Math.min(e.clientX, window.innerWidth - 220);
+  const y = Math.min(e.clientY, window.innerHeight - 200);
+  menu.style.top = y + 'px';
+  menu.style.left = x + 'px';
+}
+
+function updateCtxFmts() {
+  document.getElementById('ctx-fmts').innerHTML = [
+    {k:'bluray',l:'BLU-RAY',c:'blu'},
+    {k:'bluray4k',l:'4K UHD',c:'4k'},
+    {k:'dvd',l:'DVD',c:'dvd'},
+    {k:'steelbook',l:'STEELBOOK 👑',c:'steel'}
+  ].map(({k,l,c}) => `<span class="ctx-fmt ${ctxFormats[k]?'active-'+c:''}" onclick="toggleCtxFmt('${k}')">${ctxFormats[k]?'✓ ':''} ${l}</span>`).join('');
+}
+
+function toggleCtxFmt(fmt) {
+  ctxFormats[fmt] = !ctxFormats[fmt];
+  updateCtxFmts();
+}
+
+function saveCtxFormats() {
+  const f = films.find(x=>x.id==ctxFilmId);
+  if (f) { Object.assign(f, ctxFormats); save(); render(); toast('✅ Formats mis à jour !'); }
+  closeCtxMenu();
+}
+
+function deleteFromCtx() {
+  const f = films.find(x=>x.id==ctxFilmId);
+  if (!f || !confirm('Supprimer "'+f.title+'" ?')) return;
+  films = films.filter(x=>x.id!=ctxFilmId);
   save(); render(); toast('🗑 Supprimé');
+  closeCtxMenu();
+}
+
+function closeCtxMenu() {
+  document.getElementById('ctx-menu').style.display = 'none';
+  document.getElementById('ctx-overlay').style.display = 'none';
+}
+
+// ---- FILM DETAIL ----
+async function openFilmDetail(filmId) {
+  const f = films.find(x=>x.id==filmId);
+  if (!f) return;
+  const modal = document.getElementById('film-modal');
+  const hero = document.getElementById('film-modal-hero');
+  const body = document.getElementById('film-modal-body');
+  const cached = posterCache[f.title.toLowerCase().trim()];
+  const fmtOwned = [
+    f.bluray?'<span class="film-modal-fmt fmt-blu-owned">✓ BLU-RAY</span>':'',
+    f.bluray4k?'<span class="film-modal-fmt fmt-k4-owned">✓ 4K UHD</span>':'',
+    f.dvd?'<span class="film-modal-fmt fmt-dvd-owned">✓ DVD</span>':'',
+    f.steelbook?'<span class="film-modal-fmt fmt-steel-owned">✓ STEELBOOK 👑</span>':''
+  ].join('');
+  hero.innerHTML = `
+    <button class="film-modal-back" onclick="closeFilmModal()">✕</button>
+    <img class="film-modal-poster" src="${cached||''}" alt="" style="${!cached?'opacity:.3':''}">
+    <div style="flex:1;min-width:0">
+      <div class="film-modal-title">${esc(f.title)}</div>
+      <div class="film-modal-director" id="fmd-dir">Chargement...</div>
+      <div class="film-modal-meta" id="fmd-meta"></div>
+      <div class="film-modal-rating" id="fmd-rating"></div>
+      <div class="film-modal-fmts">${fmtOwned}</div>
+    </div>`;
+  body.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:20px 0;text-align:center">⏳ Chargement des infos...</div>';
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+
+  // Fetch meta
+  const meta = await getFilmMeta(f.title, f.id);
+  if (!meta) {
+    body.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:20px 0;text-align:center">Infos non disponibles</div>';
+    return;
+  }
+
+  document.getElementById('fmd-dir').textContent = meta.director || '';
+  document.getElementById('fmd-dir').style.color = 'var(--purple2)';
+  document.getElementById('fmd-meta').textContent = [meta.year, meta.runtime?meta.runtime+'min':'', meta.country].filter(Boolean).join(' • ');
+  if (meta.rating) document.getElementById('fmd-rating').innerHTML = '★ ' + meta.rating.toFixed(1) + '<span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:4px">/ 10</span>';
+
+  const genres = (meta.genres||[]).map(g=>`<span class="film-genre">${g}</span>`).join('');
+  const cast = (meta.cast||[]).slice(0,5).map(a=>`
+    <div class="film-person">
+      <div class="film-person-avatar">${a.photo?`<img src="${a.photo}" alt="">`:'👤'}</div>
+      <div><div class="film-person-name">${esc(a.name)}</div><div class="film-person-role">${esc(a.character||'')}</div></div>
+    </div>`).join('');
+
+  body.innerHTML = `
+    ${genres?`<div class="film-section-title">GENRES</div><div class="film-genres">${genres}</div>`:''}
+    ${meta.overview?`<div class="film-section-title">SYNOPSIS</div><div class="film-synopsis">${esc(meta.overview)}</div>`:''}
+    ${meta.director?`<div class="film-section-title">RÉALISATEUR</div><div class="film-crew"><div class="film-person"><div class="film-person-avatar">🎬</div><div><div class="film-person-name">${esc(meta.director)}</div></div></div></div>`:''}
+    ${cast?`<div class="film-section-title">ACTEURS PRINCIPAUX</div><div class="film-crew">${cast}</div>`:''}`;
+}
+
+function closeFilmModal() {
+  document.getElementById('film-modal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+async function getFilmMeta(title, filmId) {
+  const key = title.toLowerCase().trim();
+  if (filmMeta[key]) return filmMeta[key];
+  try {
+    const yearMatch = title.match(/\((\d{4})\)$/);
+    const year = yearMatch ? yearMatch[1] : null;
+    const cleanTitle = title.replace(/\s*\(\d{4}\)$/, '').trim();
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(cleanTitle)}&language=fr-FR`;
+    if (year) url += `&year=${year}`;
+    const r = await fetch(url);
+    const d = await r.json();
+    if (!d.results?.length) return null;
+    let best = d.results[0];
+    if (year) { const ym = d.results.find(m=>m.release_date?.startsWith(year)); if(ym) best=ym; }
+    // Get full details + credits
+    const [detailsRes, creditsRes] = await Promise.all([
+      fetch(`https://api.themoviedb.org/3/movie/${best.id}?api_key=${TMDB_KEY}&language=fr-FR`),
+      fetch(`https://api.themoviedb.org/3/movie/${best.id}/credits?api_key=${TMDB_KEY}`)
+    ]);
+    const details = await detailsRes.json();
+    const credits = await creditsRes.json();
+    const director = credits.crew?.find(c=>c.job==='Director')?.name || '';
+    const cast = (credits.cast||[]).slice(0,6).map(a=>({
+      name:a.name,
+      character:a.character,
+      photo:a.profile_path?`https://image.tmdb.org/t/p/w92${a.profile_path}`:null
+    }));
+    const runtime = details.runtime || null;
+    const country = details.production_countries?.[0]?.iso_3166_1 || '';
+    const countryFlags = {'FR':'🇫🇷','US':'🇺🇸','GB':'🇬🇧','IT':'🇮🇹','DE':'🇩🇪','JP':'🇯🇵','ES':'🇪🇸','KR':'🇰🇷','CN':'🇨🇳','IN':'🇮🇳','BE':'🇧🇪','SE':'🇸🇪','DK':'🇩🇰','PL':'🇵🇱','RU':'🇷🇺'};
+    const meta = {
+      tmdbId: best.id,
+      title: details.title,
+      year: details.release_date?.substring(0,4),
+      overview: details.overview,
+      rating: details.vote_average,
+      runtime,
+      country: (countryFlags[country]||'') + ' ' + (details.production_countries?.[0]?.name||''),
+      genres: details.genres?.map(g=>g.name)||[],
+      director,
+      cast,
+      posterPath: best.poster_path,
+      countries: details.production_countries?.map(c=>c.iso_3166_1)||[]
+    };
+    filmMeta[key] = meta;
+    saveMeta();
+    // Also cache poster
+    if (best.poster_path && !posterCache[key]) {
+      posterCache[key] = 'https://image.tmdb.org/t/p/w300'+best.poster_path;
+      savePosters();
+      updatePosterDOM(filmId, posterCache[key]);
+    }
+    return meta;
+  } catch(e) { return null; }
+}
+
+// ---- POSTER ----
+async function getPoster(title, filmId) {
+  const key = title.toLowerCase().trim();
+  if (posterCache[key] !== undefined) return posterCache[key];
+  // Check filmMeta first
+  if (filmMeta[key]?.posterPath) {
+    const url = 'https://image.tmdb.org/t/p/w300'+filmMeta[key].posterPath;
+    posterCache[key] = url; savePosters();
+    updatePosterDOM(filmId, url); return url;
+  }
+  const yearMatch = title.match(/\((\d{4})\)$/);
+  const year = yearMatch ? yearMatch[1] : null;
+  const cleanTitle = title.replace(/\s*\(\d{4}\)$/, '').trim();
+  const variations = [...new Set([cleanTitle, cleanTitle.replace(/^(le |la |les |l'|un |une |des )/i,'').trim()])];
+  for (const lang of ['fr-FR','en-US']) {
+    for (const v of variations) {
+      try {
+        let url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(v)}&language=${lang}`;
+        if (year) url += `&year=${year}`;
+        const r = await fetch(url);
+        const d = await r.json();
+        if (d.results?.length > 0) {
+          let best = d.results[0];
+          if (year) { const ym = d.results.find(m=>m.release_date?.startsWith(year)); if(ym) best=ym; }
+          if (best.poster_path) {
+            const imgUrl = 'https://image.tmdb.org/t/p/w300'+best.poster_path;
+            posterCache[key] = imgUrl; savePosters();
+            updatePosterDOM(filmId, imgUrl); return imgUrl;
+          }
+        }
+      } catch(e) {}
+    }
+  }
+  posterCache[key] = null; return null;
+}
+
+function updatePosterDOM(id, url) {
+  document.querySelectorAll(`.grid-poster[data-id="${id}"]`).forEach(el => { el.src=url; el.classList.add('loaded'); });
+  document.querySelectorAll(`.poster-ph[data-id="${id}"]`).forEach(el => el.style.display='none');
+  document.querySelectorAll(`.list-thumb[data-id="${id}"]`).forEach(el => { el.src=url; el.style.opacity='1'; });
+}
+
+// ---- TMDB SEARCH (add page) ----
+function searchTMDB(query) {
+  clearTimeout(searchTimer);
+  const results = document.getElementById('tmdb-results');
+  if (!query || query.length < 2) { results.style.display='none'; return; }
+  document.getElementById('search-spinner').style.display = 'block';
+  searchTimer = setTimeout(async () => {
+    try {
+      const r = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}&language=fr-FR&page=1`);
+      const d = await r.json();
+      document.getElementById('search-spinner').style.display = 'none';
+      if (!d.results?.length) {
+        results.style.display='block';
+        results.innerHTML='<div class="tmdb-no-results">Aucun résultat</div>'; return;
+      }
+      results.style.display='block';
+      results.innerHTML = d.results.slice(0,8).map(m => {
+        const year = m.release_date?m.release_date.substring(0,4):'';
+        const poster = m.poster_path?'https://image.tmdb.org/t/p/w92'+m.poster_path:'';
+        const existing = findInCollection(m.title, year);
+        const badges = existing
+          ? [existing.bluray?'<span class="tmdb-badge owned">BLU-RAY</span>':'',
+             existing.bluray4k?'<span class="tmdb-badge owned">4K</span>':'',
+             existing.dvd?'<span class="tmdb-badge owned">DVD</span>':'',
+             existing.steelbook?'<span class="tmdb-badge owned">👑 SB</span>':''].join('')
+          : '<span class="tmdb-badge notowned">Pas dans ta collection</span>';
+        return `<div class="tmdb-result" onclick="selectFilm(${m.id},'${esc(m.title).replace(/'/g,"\\\\'")}','${year}','${poster}')">
+          ${poster?`<img class="tmdb-thumb" src="${poster}" alt="">`:'<div class="tmdb-thumb"></div>'}
+          <div class="tmdb-info">
+            <div class="tmdb-title">${esc(m.title)}</div>
+            <div class="tmdb-year">${year}</div>
+            <div class="tmdb-owned">${badges}</div>
+          </div>
+        </div>`;
+      }).join('');
+    } catch(e) { document.getElementById('search-spinner').style.display='none'; }
+  }, 350);
+}
+
+function findInCollection(title, year) {
+  const clean = t => t.toLowerCase().trim().replace(/\s*\(\d{4}\)$/,'');
+  return films.find(f => clean(f.title)===clean(title) || f.title.toLowerCase()===title.toLowerCase());
+}
+
+function selectFilm(tmdbId, title, year, poster) {
+  document.getElementById('tmdb-results').style.display='none';
+  document.getElementById('add-search').value='';
+  currentTmdbFilm = {id:tmdbId,title,year,poster};
+  const existing = findInCollection(title, year);
+  const posterEl = document.getElementById('fmt-poster');
+  if (poster) { posterEl.src=poster; posterEl.style.display='block'; } else posterEl.style.display='none';
+  document.getElementById('fmt-title').textContent = title;
+  document.getElementById('fmt-year').textContent = year?'('+year+')':'';
+  currentFormats = existing
+    ? {bluray:existing.bluray,bluray4k:existing.bluray4k,dvd:existing.dvd,steelbook:existing.steelbook}
+    : {bluray:false,bluray4k:false,dvd:false,steelbook:false};
+  document.getElementById('fmt-save-btn').textContent = existing?'Mettre à jour':'Ajouter à ma collection';
+  updateFmtUI();
+  document.getElementById('fmt-modal').classList.add('show');
+}
+
+function toggleFmt(fmt) { currentFormats[fmt]=!currentFormats[fmt]; updateFmtUI(); }
+function updateFmtUI() {
+  const map = {bluray:{el:'fmt-blu',chk:'chk-blu',cls:'sel-blu'},bluray4k:{el:'fmt-k4',chk:'chk-k4',cls:'sel-k4'},dvd:{el:'fmt-dvd',chk:'chk-dvd',cls:'sel-dvd'},steelbook:{el:'fmt-steel',chk:'chk-steel',cls:'sel-steel'}};
+  Object.entries(map).forEach(([fmt,cfg]) => {
+    document.getElementById(cfg.el).classList.toggle(cfg.cls, currentFormats[fmt]);
+    document.getElementById(cfg.chk).textContent = currentFormats[fmt]?'✅':'○';
+  });
+}
+function closeFmtModal() { document.getElementById('fmt-modal').classList.remove('show'); currentTmdbFilm=null; }
+
+function saveFilm() {
+  if (!currentTmdbFilm) return;
+  if (!currentFormats.bluray&&!currentFormats.bluray4k&&!currentFormats.dvd&&!currentFormats.steelbook) { alert('Sélectionne au moins un format !'); return; }
+  const {title,year,poster} = currentTmdbFilm;
+  const displayTitle = year?`${title} (${year})`:title;
+  if (poster) { posterCache[displayTitle.toLowerCase().trim()]=poster.replace('/w92/','/w300/'); savePosters(); }
+  const existing = findInCollection(title, year);
+  if (existing) { Object.assign(existing, currentFormats); save(); render(); closeFmtModal(); toast('✅ "'+title+'" mis à jour !'); }
+  else { films.push({id:Date.now()+Math.random(),title:displayTitle,...currentFormats}); save(); render(); closeFmtModal(); toast('✅ "'+title+'" ajouté !'); }
+}
+
+// ---- STATS ----
+async function loadStats() {
+  statsLoaded = true;
+  const content = document.getElementById('stats-content');
+  const total = films.length;
+  const nBlu = films.filter(f=>f.bluray).length;
+  const n4k = films.filter(f=>f.bluray4k).length;
+  const nDvd = films.filter(f=>f.dvd).length;
+  const nSteel = films.filter(f=>f.steelbook).length;
+
+  // Show basic stats immediately
+  content.innerHTML = `
+    <div class="stats-section">
+      <div class="stats-section-title">Vue d'ensemble</div>
+      <div class="stats-grid">
+        <div class="stats-num-card"><div class="stats-num">${total}</div><div class="stats-num-label">FILMS TOTAL</div></div>
+        <div class="stats-num-card"><div class="stats-num" style="color:var(--steel)">${nSteel}</div><div class="stats-num-label">STEELBOOKS 👑</div></div>
+        <div class="stats-num-card"><div class="stats-num" style="color:var(--blu)">${nBlu}</div><div class="stats-num-label">BLU-RAY</div></div>
+        <div class="stats-num-card"><div class="stats-num" style="color:var(--k4)">${n4k}</div><div class="stats-num-label">4K UHD</div></div>
+      </div>
+    </div>
+    <div class="stats-section">
+      <div class="stats-section-title">Répartition des formats</div>
+      <div class="stats-card">
+        <div class="stats-fmt-bar">
+          <div style="flex:${nBlu};background:var(--blu)"></div>
+          <div style="flex:${n4k};background:var(--k4)"></div>
+          <div style="flex:${nDvd};background:var(--dvd)"></div>
+          <div style="flex:${nSteel};background:var(--steel)"></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+          <span style="font-size:10px;color:var(--blu)">■ ${nBlu} Blu-ray</span>
+          <span style="font-size:10px;color:var(--k4)">■ ${n4k} 4K</span>
+          <span style="font-size:10px;color:var(--dvd)">■ ${nDvd} DVD</span>
+          <span style="font-size:10px;color:var(--steel)">■ ${nSteel} Steelbook</span>
+        </div>
+      </div>
+    </div>
+    <div class="stats-progress" id="stats-progress-box">
+      <div>📡 Chargement des données TMDB pour les stats avancées...</div>
+      <div>0 / ${total} films analysés</div>
+      <div class="stats-progress-bar"><div class="stats-progress-fill" id="stats-progress-fill" style="width:0%"></div></div>
+    </div>
+    <div id="stats-advanced"></div>`;
+
+  // Load meta for all films progressively
+  const directors = {}, countries = {}, decades = {}, genres = {};
+  let done = 0;
+  const BATCH = 8;
+
+  for (let i = 0; i < films.length; i += BATCH) {
+    const batch = films.slice(i, i+BATCH);
+    await Promise.all(batch.map(async f => {
+      const meta = await getFilmMeta(f.title, f.id);
+      if (meta) {
+        // Directors
+        if (meta.director) directors[meta.director] = (directors[meta.director]||0)+1;
+        // Countries
+        (meta.countries||[]).forEach(c => { countries[c]=(countries[c]||0)+1; });
+        // Decades
+        if (meta.year) { const d=Math.floor(parseInt(meta.year)/10)*10; decades[d]=(decades[d]||0)+1; }
+        // Genres
+        (meta.genres||[]).forEach(g => { genres[g]=(genres[g]||0)+1; });
+      }
+      done++;
+    }));
+    // Update progress
+    const pct = Math.round(done/total*100);
+    const pfill = document.getElementById('stats-progress-fill');
+    const pbox = document.getElementById('stats-progress-box');
+    if (pfill) pfill.style.width = pct+'%';
+    if (pbox) pbox.innerHTML = `<div>📡 Analyse en cours... ${pct}%</div><div>${done} / ${total} films</div><div class="stats-progress-bar"><div class="stats-progress-fill" style="width:${pct}%"></div></div>`;
+    // Update advanced stats periodically
+    if (done % 50 === 0 || done === total) updateAdvancedStats(directors, countries, decades, genres);
+  }
+
+  // Final update
+  const pbox = document.getElementById('stats-progress-box');
+  if (pbox) pbox.innerHTML = '✅ Analyse complète !';
+  setTimeout(() => { const pb = document.getElementById('stats-progress-box'); if(pb) pb.style.display='none'; }, 2000);
+  updateAdvancedStats(directors, countries, decades, genres);
+}
+
+const countryNames = {'FR':'🇫🇷 France','US':'🇺🇸 États-Unis','GB':'🇬🇧 Royaume-Uni','IT':'🇮🇹 Italie','DE':'🇩🇪 Allemagne','JP':'🇯🇵 Japon','ES':'🇪🇸 Espagne','KR':'🇰🇷 Corée du Sud','CN':'🇨🇳 Chine','BE':'🇧🇪 Belgique','SE':'🇸🇪 Suède','DK':'🇩🇰 Danemark','PL':'🇵🇱 Pologne','RU':'🇷🇺 Russie','IN':'🇮🇳 Inde','AU':'🇦🇺 Australie','BR':'🇧🇷 Brésil'};
+
+function updateAdvancedStats(directors, countries, decades, genres) {
+  const adv = document.getElementById('stats-advanced');
+  if (!adv) return;
+  const topDirs = Object.entries(directors).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const topCountries = Object.entries(countries).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const topGenres = Object.entries(genres).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxDir = topDirs[0]?.[1]||1;
+  const maxDecade = Math.max(...Object.values(decades),1);
+
+  // Decades chart
+  const decadeList = [1930,1940,1950,1960,1970,1980,1990,2000,2010,2020].filter(d=>decades[d]);
+  const decadeBars = decadeList.map(d=>`
+    <div class="stats-decade-bar">
+      <div class="stats-decade-fill ${decades[d]===maxDecade?'max':''}" style="height:${Math.round(decades[d]/maxDecade*54)}px"></div>
+      <div class="stats-decade-label">${d}s</div>
+    </div>`).join('');
+
+  adv.innerHTML = `
+    <div class="stats-section">
+      <div class="stats-section-title">Films par décennie</div>
+      <div class="stats-card">
+        <div class="stats-decade-chart">${decadeBars}</div>
+      </div>
+    </div>
+    <div class="stats-section">
+      <div class="stats-section-title">Top réalisateurs</div>
+      <div class="stats-card">
+        ${topDirs.map(([name,count],i)=>`
+          <div class="stats-bar-row">
+            <div class="stats-bar-label" style="font-size:11px;color:${i===0?'var(--purple2)':'var(--text)'}">${i+1}. ${esc(name)}</div>
+            <div class="stats-bar-track"><div class="stats-bar-fill" style="width:${Math.round(count/maxDir*100)}%"></div></div>
+            <div class="stats-bar-count">${count}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="stats-section">
+      <div class="stats-section-title">Top pays</div>
+      <div class="stats-card">
+        ${topCountries.map(([code,count])=>`
+          <div class="stats-bar-row">
+            <div class="stats-bar-label" style="font-size:11px">${countryNames[code]||code}</div>
+            <div class="stats-bar-track"><div class="stats-bar-fill" style="width:${Math.round(count/topCountries[0][1]*100)}%"></div></div>
+            <div class="stats-bar-count">${count}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="stats-section">
+      <div class="stats-section-title">Top genres</div>
+      <div class="stats-card">
+        ${topGenres.map(([genre,count])=>`
+          <div class="stats-bar-row">
+            <div class="stats-bar-label" style="font-size:11px">${esc(genre)}</div>
+            <div class="stats-bar-track"><div class="stats-bar-fill" style="width:${Math.round(count/topGenres[0][1]*100)}%"></div></div>
+            <div class="stats-bar-count">${count}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
 }
 
 function toast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg; t.style.display = 'block';
-  clearTimeout(t._t); t._t = setTimeout(()=>t.style.display='none', 2800);
+  t.textContent=msg; t.style.display='block';
+  clearTimeout(t._t); t._t=setTimeout(()=>t.style.display='none',2800);
 }
 
-// Close dropdown when clicking outside
 document.addEventListener('click', e => {
-  if (!e.target.closest('.add-panel')) {
-    document.getElementById('tmdb-results').style.display = 'none';
-  }
+  if (!e.target.closest('.add-panel')) document.getElementById('tmdb-results').style.display='none';
 });
 </script>
 </body>
