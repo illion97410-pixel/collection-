@@ -215,7 +215,7 @@ body{background:var(--bg);color:var(--txt);font-family:system-ui,sans-serif;min-
   <div class="strow"><span class="stag t0" id="s0">-</span><span class="stag t1" id="s1">BLU</span><span class="stag t2" id="s2">4K</span><span class="stag t3" id="s3">DVD</span><span class="stag t4" id="s4">SB</span></div>
   <div class="sw"><span class="sic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><input type="text" id="srch" placeholder="Titre, acteur, realisateur..." oninput="onSrch()"></div>
   <div class="frow"><button class="fbtn on" onclick="setFlt(0,this)">Tous</button><button class="fbtn" onclick="setFlt(1,this)">Blu-ray</button><button class="fbtn" onclick="setFlt(2,this)">4K</button><button class="fbtn" onclick="setFlt(3,this)">DVD</button><button class="fbtn" onclick="setFlt(4,this)">Steelbook</button></div>
-  <div class="srow2"><label>TRIER</label><select id="srt" onchange="ren()"><option value="0">A vers Z</option><option value="1">Z vers A</option><option value="2">Ajout recent</option><option value="3">Ajout ancien</option><option value="4">Annee recent</option><option value="5">Annee ancien</option><option value="6">Note TMDB</option><option value="7">Realisateur</option></select></div>
+  <div class="srow2"><label>TRIER</label><select id="srt" onchange="ren()"><option value="0">A vers Z</option><option value="1">Z vers A</option><option value="2">Ajout recent</option><option value="3">Ajout ancien</option></select></div>
 </div>
 <div class="cw"><div class="rc" id="rc"></div><div class="grid" id="gv"></div><div style="display:none;overflow-x:auto;padding:0 10px" id="lv"><table class="lt"><thead><tr><th>FILM</th><th>BLU</th><th>4K</th><th>DVD</th><th>SB</th><th></th></tr></thead><tbody id="lb"></tbody></table></div></div>
 </div>
@@ -223,7 +223,7 @@ body{background:var(--bg);color:var(--txt);font-family:system-ui,sans-serif;min-
 <div id="pg-stats" class="pg"><div class="hdr"><div class="ht"><div class="hl"><div class="hb"></div><h1>STATISTIQUES</h1></div></div></div><div class="stw" id="stc"><div style="text-align:center;padding:36px;color:var(--dim)">Ouvre cet onglet pour charger</div></div></div>
 <div class="fmtb" id="fmtb"><div class="fmtm"><div class="fmth"><img class="fmtp" id="fmtposter" src="" alt=""><div><div class="fmttl" id="fmttl"></div><div class="fmtyr" id="fmtyr"></div></div></div><div class="fmtlb">Formats</div><div class="fmtgr"><div class="fo fo1" id="fo-b" onclick="tgF(0)"><div class="foc" id="fc-b">&#9711;</div><div class="fon">BLU-RAY</div></div><div class="fo fo2" id="fo-k" onclick="tgF(1)"><div class="foc" id="fc-k">&#9711;</div><div class="fon">4K UHD</div></div><div class="fo fo3" id="fo-d" onclick="tgF(2)"><div class="foc" id="fc-d">&#9711;</div><div class="fon">DVD</div></div><div class="fo fo4" id="fo-s" onclick="tgF(3)"><div class="foc" id="fc-s">&#9711;</div><div class="fon">STEELBOOK</div></div></div><div class="fmtbts"><button class="fmtcn" onclick="clFmt()">Annuler</button><button class="fmtsv" id="fmtsv" onclick="svFilm()">Ajouter</button></div></div></div>
 <div class="fmb" id="fmb"><div class="fm"><div class="fh" id="fh"></div><div class="fbdy" id="fbdy"></div></div></div>
-<div class="lmb" id="lmb"><div class="lm"><h3>CORRIGER CE FILM</h3><div class="lsub" id="lsub"></div><div class="lsw"><span class="lsic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><input type="text" class="lsi" id="lsi" placeholder="Titre original..." oninput="onLkSrch(this.value)" autocomplete="off"></div><div class="lrs" id="lrs"></div><div class="lbts"><button class="lbc" onclick="clLk()">Annuler</button><button class="lbs" onclick="svLk()">Valider</button></div></div></div>
+<div class="lmb2" id="lmb2"><div class="lm"><h3>CORRIGER CE FILM</h3><div class="lsub" id="lsub"></div><div class="lsw"><span class="lsic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><input type="text" class="lsi" id="lsi" placeholder="Titre original..." oninput="onLkSrch(this.value)" autocomplete="off"></div><div class="lrs" id="lrs"></div><div class="lbts"><button class="lbc" onclick="clLk()">Annuler</button><button class="lbs" onclick="svLk()">Valider</button></div></div></div>
 <div class="pmb" id="pmb"><div class="pm"><h3>CHANGER L AFFICHE</h3><div class="psub" id="psub"></div><div class="pgr" id="pgr"></div><div class="pbts"><button class="pbc" onclick="clPm()">Annuler</button><button class="pbs" onclick="svPm()">Valider</button></div></div></div>
 <div class="cov" id="cov" onclick="clCx()"></div>
 <div class="ctx" id="ctx"><div class="cth" id="cth"></div><div class="ctf" id="ctf"></div><button class="csb" onclick="svCx()">Sauvegarder formats</button><div class="ci cip" onclick="opnLk()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Corriger le film</div><div class="ci cii" onclick="opnPm()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Changer l affiche</div><div class="ci cid" onclick="delCx()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>Supprimer</div></div>
@@ -234,7 +234,7 @@ var DF=[{"title":"À bout de souffle","bluray":true,"bluray4k":true,"dvd":false,
 </script>
 <script>
 var AK='8265bd1679663a7ea12ac168da84d2e8';
-var SK='cv9',PK='pv3',MK='mv2',LK='lv1';
+var SK='collection_v8',PK='posters_v2',MK='film_meta_v1',LK='film_tmdb_links';
 var films=[],flt=0,vw=1,stOk=0;
 var PC={},FM={},LM={};
 var aT=null,mT=null,lT=null;
@@ -245,6 +245,26 @@ var pmId=null,pmPath=null;
 
 function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function dot(v,c){return '<span class="dot '+(v?c:'de')+'"></span>';}
+
+
+function migrate(){
+  var oldKeys=[
+    ['collection_v8','posters_v2','film_meta_v1','film_tmdb_links'],
+    ['col_v9','pos_v3','meta_v2','lnk_v1']
+  ];
+  if(!localStorage.getItem(SK)){
+    for(var i=0;i<oldKeys.length;i++){
+      var old=localStorage.getItem(oldKeys[i][0]);
+      if(old){
+        localStorage.setItem(SK,old);
+        var p=localStorage.getItem(oldKeys[i][1]);if(p)localStorage.setItem(PK,p);
+        var m=localStorage.getItem(oldKeys[i][2]);if(m)localStorage.setItem(MK,m);
+        var l=localStorage.getItem(oldKeys[i][3]);if(l)localStorage.setItem(LK,l);
+        break;
+      }
+    }
+  }
+}
 
 function go(){
   try{var s=localStorage.getItem(SK);films=s?JSON.parse(s):DF.map(function(f,i){var n=Object.assign({},f);n.id=i+1;return n;});}
@@ -259,7 +279,7 @@ function svP(){try{localStorage.setItem(PK,JSON.stringify(PC));}catch(x){}}
 function svM(){try{localStorage.setItem(MK,JSON.stringify(FM));}catch(x){}}
 function svL(){try{localStorage.setItem(LK,JSON.stringify(LM));}catch(x){}}
 
-window.addEventListener('DOMContentLoaded',go);
+window.addEventListener('DOMContentLoaded',function(){migrate();go();});
 
 function pg(i){
   var ids=['pg-col','pg-add','pg-stats'];
@@ -289,22 +309,7 @@ function srtd(arr){
   else if(s===1)a.sort(function(x,y){return y.title.localeCompare(x.title,'fr');});
   else if(s===2)a.sort(function(x,y){return (y.id||0)-(x.id||0);});
   else if(s===3)a.sort(function(x,y){return (x.id||0)-(y.id||0);});
-  else if(s===4){a.sort(function(x,y){
-    var a=FM[x.title.toLowerCase().trim()],b=FM[y.title.toLowerCase().trim()];
-    return (b?parseInt(b.year||0):0)-(a?parseInt(a.year||0):0);
-  });}
-  else if(s===5){a.sort(function(x,y){
-    var a=FM[x.title.toLowerCase().trim()],b=FM[y.title.toLowerCase().trim()];
-    return (a?parseInt(a.year||9999):9999)-(b?parseInt(b.year||9999):9999);
-  });}
-  else if(s===6){a.sort(function(x,y){
-    var a=FM[x.title.toLowerCase().trim()],b=FM[y.title.toLowerCase().trim()];
-    return (b?parseFloat(b.rating||0):0)-(a?parseFloat(a.rating||0):0);
-  });}
-  else if(s===7){a.sort(function(x,y){
-    var a=FM[x.title.toLowerCase().trim()],b=FM[y.title.toLowerCase().trim()];
-    return ((a?a.director||'':x.title)).localeCompare((b?b.director||'':y.title),'fr');
-  });}
+
   return a;
 }
 
@@ -461,11 +466,11 @@ function opnLk(){
   var ct=f.title.replace(/\s*\(\d{4}\)$/,'').trim();
   document.getElementById('lsi').value=ct;
   document.getElementById('lrs').innerHTML='';
-  document.getElementById('lmb').className='lmb on';
+  document.getElementById('lmb2').className='lmb2 on';
   setTimeout(function(){onLkSrch(ct);},150);
 }
 
-function clLk(){document.getElementById('lmb').className='lmb';lkId=null;lkSel=null;}
+function clLk(){document.getElementById('lmb2').className='lmb2';lkId=null;lkSel=null;}
 
 function onLkSrch(q){
   clearTimeout(lT);
